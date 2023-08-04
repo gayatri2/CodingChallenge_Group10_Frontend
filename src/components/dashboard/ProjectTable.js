@@ -1,9 +1,11 @@
+import React, { useState,useEffect } from "react";
 import { Card, CardBody, CardTitle, CardSubtitle, Table } from "reactstrap";
 import user1 from "../../assets/images/users/user1.jpg";
 import user2 from "../../assets/images/users/user2.jpg";
 import user3 from "../../assets/images/users/user3.jpg";
 import user4 from "../../assets/images/users/user4.jpg";
 import user5 from "../../assets/images/users/user5.jpg";
+
 
 const tableData = [
   {
@@ -17,7 +19,7 @@ const tableData = [
   },
   {
     avatar: user2,
-    name: "Hanna Gover",
+    name: "Charles Gover",
     email: "hgover@gmail.com",
     project: "Lading pro React",
     status: "done",
@@ -26,7 +28,7 @@ const tableData = [
   },
   {
     avatar: user3,
-    name: "Hanna Gover",
+    name: "John Gover",
     email: "hgover@gmail.com",
     project: "Elite React",
     status: "holt",
@@ -35,7 +37,7 @@ const tableData = [
   },
   {
     avatar: user4,
-    name: "Hanna Gover",
+    name: "Cameron Gover",
     email: "hgover@gmail.com",
     project: "Flexy React",
     status: "pending",
@@ -44,7 +46,7 @@ const tableData = [
   },
   {
     avatar: user5,
-    name: "Hanna Gover",
+    name: "hatan Gover",
     email: "hgover@gmail.com",
     project: "Ample React",
     status: "done",
@@ -54,28 +56,48 @@ const tableData = [
 ];
 
 const ProjectTables = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+
+  const filteredData = tableData.filter((tdata) =>
+    tdata.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div>
+
+
       <Card>
         <CardBody>
           <CardTitle tag="h5">Project Listing</CardTitle>
           <CardSubtitle className="mb-2 text-muted" tag="h6">
             Overview of the projects
           </CardSubtitle>
+          
+      <input
+        type="text"
+        value={searchQuery}
+        onChange={handleSearchChange}
+        placeholder="Search by name..."
+      />
 
           <Table className="no-wrap mt-3 align-middle" responsive borderless>
             <thead>
               <tr>
                 <th>Team Lead</th>
                 <th>Project</th>
-
                 <th>Status</th>
                 <th>Weeks</th>
                 <th>Budget</th>
               </tr>
             </thead>
             <tbody>
-              {tableData.map((tdata, index) => (
+              {filteredData.map((tdata, index) => (
                 <tr key={index} className="border-top">
                   <td>
                     <div className="d-flex align-items-center p-2">
