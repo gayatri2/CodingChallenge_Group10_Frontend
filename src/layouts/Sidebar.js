@@ -6,7 +6,7 @@ const navigation = [
   {
     title: "Dashboard",
     href: "/starter",
-    icon: "bi bi-speedometer2",
+    // icon: "bi bi-speedometer2",
   },
   {
     title: "Alert",
@@ -14,39 +14,14 @@ const navigation = [
     icon: "bi bi-bell",
   },
   {
-    title: "Badges",
-    href: "/badges",
-    icon: "bi bi-patch-check",
+    title: "Security",
+    href: "/security",
+    icon: "bi bi-bell",
   },
   {
-    title: "Buttons",
-    href: "/buttons",
-    icon: "bi bi-hdd-stack",
-  },
-  {
-    title: "Cards",
-    href: "/cards",
-    icon: "bi bi-card-text",
-  },
-  {
-    title: "Grid",
-    href: "/grid",
-    icon: "bi bi-columns",
-  },
-  {
-    title: "Table",
-    href: "/table",
-    icon: "bi bi-layout-split",
-  },
-  {
-    title: "Forms",
-    href: "/forms",
-    icon: "bi bi-textarea-resize",
-  },
-  {
-    title: "Breadcrumbs",
-    href: "/breadcrumbs",
-    icon: "bi bi-link",
+    title: "Trade",
+    href: "/trades",
+    icon: "bi bi-bell",
   },
   {
     title: "About",

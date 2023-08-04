@@ -1,5 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { Card, CardBody, CardTitle, CardSubtitle, Table } from "reactstrap";
+import { Container, InputAdornment, TextField } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
 import user1 from "../../assets/images/users/user1.jpg";
 import user2 from "../../assets/images/users/user2.jpg";
 import user3 from "../../assets/images/users/user3.jpg";
@@ -78,13 +80,33 @@ const ProjectTables = () => {
           <CardSubtitle className="mb-2 text-muted" tag="h6">
             Overview of the projects
           </CardSubtitle>
-          
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={handleSearchChange}
-        placeholder="Search by name..."
-      />
+
+
+          <Container maxWidth="md" sx={{ mt: 5 }}>
+  <div style={{ display: 'flex', justifyContent: 'flex-start', marginRight: 'auto' }}>
+    <TextField
+      id="search"
+      type="search"
+      label="Search..."
+      value={searchQuery}
+      onChange={handleSearchChange}
+      sx={{ width: 700 }}
+      InputProps={{
+        endAdornment: (
+          <InputAdornment position="end">
+            <SearchIcon />
+          </InputAdornment>
+        ),
+      }}
+    />
+  </div>
+</Container>
+
+
+
+
+
+
 
           <Table className="no-wrap mt-3 align-middle" responsive borderless>
             <thead>
