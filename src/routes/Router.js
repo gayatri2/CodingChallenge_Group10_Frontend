@@ -18,6 +18,7 @@ const Forms = lazy(() => import("../views/ui/Forms"));
 const Breadcrumbs = lazy(() => import("../views/ui/Breadcrumbs"));
 const Trades=lazy(() => import("../views/ui/Trades"));
 const Security=lazy(() => import("../views/ui/Security"));
+const Login = lazy(() => import("../views/login"));
 /*****Routes******/
 
 
@@ -36,6 +37,7 @@ const ThemeRoutes = [
       { path: "/alerts", exact: true, element: <Alerts /> },
       { path: "/badges", exact: true, element: <Badges /> },
       { path: "/buttons", exact: true, element: <Buttons /> },
+      { path: "/login", exact: true, element: <Login /> },
       { path: "/cards", exact: true, element: <Cards /> },
       { path: "/grid", exact: true, element: <Grid /> },
       { path: "/table", exact: true, element: <Tables /> },

@@ -18,7 +18,7 @@ import user1 from "../assets/images/users/user1.jpg";
 import { useNavigate } from 'react-router-dom';
 
 
-const Header = () => {
+const Header = (props) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [dropdownOpen, setDropdownOpen] = React.useState(false);
 
@@ -27,6 +27,10 @@ const Header = () => {
   const handleMyAccountClick = () => {
     navigate("/myaccount");
   };
+
+  const navigateToLogin = () => {
+    navigate("/login");
+  }
 
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   const Handletoggle = () => {
@@ -88,25 +92,33 @@ const Header = () => {
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>
-        <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-          <DropdownToggle color="transparent">
-            <img
-              src={user1}
-              alt="profile"
-              className="rounded-circle"
-              width="30"
-            ></img>
-          </DropdownToggle>
-          <DropdownMenu>
-            <DropdownItem header>Info</DropdownItem>
-            <DropdownItem onClick={handleMyAccountClick}>My Account</DropdownItem>
-            <DropdownItem>Edit Profile</DropdownItem>
-            <DropdownItem divider />
-            <DropdownItem>My Balance</DropdownItem>
-            <DropdownItem>Inbox</DropdownItem>
-            <DropdownItem>Logout</DropdownItem>
-          </DropdownMenu>
-        </Dropdown>
+        {
+          props.isLoggedIn === true ? 
+            <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+              <DropdownToggle color="transparent">
+                <img
+                  src={user1}
+                  alt="profile"
+                  className="rounded-circle"
+                  width="30"
+                ></img>
+              </DropdownToggle>
+              <DropdownMenu>
+                  <DropdownItem header>Info</DropdownItem>
+                  <DropdownItem onClick={handleMyAccountClick}>My Account</DropdownItem>
+                  <DropdownItem>Edit Profile</DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>My Balance</DropdownItem>
+                  <DropdownItem>Inbox</DropdownItem>
+                  <DropdownItem>Logout</DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+            :
+            <div className="button-group">
+              <Button className="btn" color="success" size="sm" onClick={navigateToLogin}>Login</Button>  
+              <Button className="btn" color="info" size="sm">Register</Button>  
+            </div>
+        }
       </Collapse>
     </Navbar>
   );
