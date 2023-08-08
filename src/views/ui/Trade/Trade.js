@@ -35,21 +35,6 @@ export default function Trade(props) {
     p: 4,
   };
 
-  /* const loadsecuritydata = async () => {
-       const result = await fetch("http://localhost:8081/api/v1/getAllSecurities", {
-         method: "GET",
-         headers: {
-           "Content-Type": "application/json",
-         },
-       });
-
-       const info = await result.json();
-        console.log(info)
-        setsecurityData(info)
-   
-     };*/
-
-
 
   const Deletetradedata = async (user) => {
 
@@ -66,9 +51,21 @@ export default function Trade(props) {
 
   };
 
+  const loadTradeData = async () => {
+    const result = await fetch("http://localhost:8081/api/v1/getAllTrades", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const info = await result.json();
+
+    settradeData(info)
+  };
+
   useEffect(() => {
-    // loadsecuritydata()
-    // console.log(securityData)
+    loadTradeData();
   }, [])
   return (
     <>
@@ -76,108 +73,53 @@ export default function Trade(props) {
         <button>CREATE</button>
       </Link>
       {tradeData?.length > 0 ? (
-        <>
-          <Table>
-            <Thead>
-              <Tr>
-                <Th scope="col">S.N</Th>
-                <Th scope="col">Quantity</Th>
-                <Th scope="col">Status</Th>
-                <Th scope="col">Price</Th>
-                <Th scope="col">Buy_Sell</Th>
-                <Th scope="col">TradeDate</Th>
-                <Th scope="col">SettlementDate</Th>
+        <Table className="table table-bordered table-hover">
+          <Thead>
+            <Tr>
+              <Th scope="col">S.N</Th>
+              <Th scope="col">Quantity</Th>
+              <Th scope="col">Security</Th>
+              <Th scope="col">Status</Th>
+              <Th scope="col">Price</Th>
+              <Th scope="col">Counterparty</Th>
+              <Th scope="col">Buy_Sell</Th>
+              <Th scope="col">TradeDate</Th>
+              <Th scope="col">SettlementDate</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {tradeData.map((trade, index) => {
+              // console.log(trade)
+              const { quantity, status, price, counterParty, buySell, tradeDate, settlementDate, security } = trade
+              // format settlement date and trade date
+              const settlementDateFormatted = new Date(settlementDate).toLocaleDateString()
+              const tradeDateFormatted = new Date(tradeDate).toLocaleDateString()
 
-              </Tr>
-            </Thead>
-            <Tbody>
-              {tradeData.map((user, index) => (
-                <Tr key={user.id}>
+              return (
+                <Tr key={trade.id}>
                   <Th scope="row">{index + 1}</Th>
-                  <Td>{user.quantity}</Td>
-                  <Td>{user.status}</Td>
-                  <Td>{user.price}</Td>
-                  <Td>{user.buySell}</Td>
-                  <Td>{user.tradeDate}</Td>
-                  <Td>{user.settlementDate}</Td>
+                  <Th scope="row">{quantity}</Th>
+                  <Th>{security.issuer}</Th>
+                  <Th
+                    style={{
+                      color: status === "Completed" ? "green" : "red",
+                      fontWeight: "bold"
+                    }}
+                  >{status}</Th>
+                  <Th>{price}</Th>
+                  <Th>{counterParty.id}</Th>
+                  <Th>{buySell}</Th>
+                  <Th>{tradeDateFormatted}</Th>
+                  <Th>{settlementDateFormatted}</Th>
 
-
-                  <Td>
-
-
-                    <Link className="btn btn-outline-primary mx-2" onClick={handleOpenName}
-                    // onClick={() => getSecurityById(user.id)}
-                    >
-                      View
-                    </Link>
-                    {/* <Button onClick={handleOpenName}>Open modal</Button> */}
-                    <Modal
-                      aria-labelledby="transition-modal-title"
-                      aria-describedby="transition-modal-description"
-                      open={openname}
-                      onClose={handleCloseName}
-                      closeAfterTransition
-                      BackdropComponent={Backdrop}
-                      BackdropProps={{
-                        timeout: 1500,
-                      }}
-                    >
-                      <Fade in={openname}>
-                        <Box sx={stylename}>
-                          <Typography
-                            id="transition-modal-title"
-                            variant="h5"
-                            component="h4"
-                          >
-                            <b>Description</b>
-
-                          </Typography>
-                          <Typography id="transition-modal-description" sx={{ mt: 3 }}>
-                            <b>Quantity: {user.quantity}</b><br />
-                            <b>Status: {user.status}</b><br />
-                            <b>Price: {user.price}</b><br />
-                            <b>Buy_Sell: {user.buySell}</b><br />
-                            <b>TradeDate: {user.tradeDate}</b><br />
-                            <b>SettlementDate: {user.settlementDate}</b><br />
-                          </Typography>
-                        </Box>
-                      </Fade>
-                    </Modal>
-
-
-
-                    {/* <Link className="btn btn-primary mx-2" to={`/updatesecurity/${user.id}`}> */}
-                    {/* <Link className="btn btn-primary mx-2" to={`/updatesecurity/${user.id}`}  state={{id:user.id}}>
-                Update
-              </Link> */}
-
-                    <button
-                      className="btn btn-primary mx-2"
-                      onClick={() => navigate(`/updatetrade/${user.id}`, { id: user.id })}
-                    >
-                      Update
-                    </button>
-                    <Link className="btn btn-outline-primary mx-2"
-                      onClick={() => Deletetradedata(user)}
-                    >
-                      Delete
-                    </Link>
-
-
-                    {/* <button
-                className="btn btn-danger mx-2"
-                onClick={() => deleteUser(user.id)}
-              >
-                Delete
-              </button> */}
-                  </Td>
                 </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        </>
+
+              )
+            })}
+          </Tbody>
+        </Table>
       ) : (
-        <div>NO SECURITY FOUND.</div>
+        <h3>No Trade Data</h3>
       )}
 
     </>

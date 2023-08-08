@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -10,20 +10,23 @@ import axios from 'axios';
 
 function CreateTrade(props) {
   const location = useLocation();
-  console.log(location.state)
+  const navigate = useNavigate();
+  // console.log(location.state)
   const { id } = location.state;
 
   // const { id } = location?.state;
   // const { formInformation } = location?.state;
-  const [BookId, setBookId] = useState('');
-  const [CounterpartyId, setCounterpartyId] = useState('');
-  const [SecurityId, setSecurityId] = useState('');
-  const [Quantity, setQuantity] = useState('');
-  const [Status, setStatus] = useState('');
-  const [Price, setPrice] = useState('');
-  const [Buy_Sell, setBuy_Sell] = useState('');
-  const [TradeDate, setTradeDate] = useState('');
-  const [SettlementDate, setSettlementDate] = useState('');
+  const [BookId, setBookId] = useState(1);
+  const [CounterpartyId, setCounterpartyId] = useState(201);
+  const [SecurityId, setSecurityId] = useState(301);
+  const [Quantity, setQuantity] = useState(0);
+  const [Status, setStatus] = useState('Completed');
+  const [Price, setPrice] = useState(0);
+  const [Buy_Sell, setBuy_Sell] = useState('Buy');
+  const [TradeDate, setTradeDate] = useState(new Date());
+  const [SettlementDate, setSettlementDate] = useState(new Date());
+
+
 
   // const initialId = issuer.length || 0;
   const initialId = 0;
@@ -33,29 +36,60 @@ function CreateTrade(props) {
   //   console.log('Form data submitted:', formInformation);
   // };
 
+  const getSecurityById = async (id) => {
+
+    // const SecurityData = await axios.get(`http://localhost:8081/api/v1/getSecurityById/${id}`)
+    const SecurityData = await axios.get(`http://localhost:8081/api/v1/getSecurityById/301`)
+
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = {
-      id: initialId,
-      BookId,
-      CounterpartyId,
-      SecurityId,
-      Quantity,
-      Price,
-      Buy_Sell,
-      TradeDate,
-      SettlementDate
+
+    const SecurityData = await axios.get(`http://localhost:8081/api/v1/getSecurityById/${SecurityId}`)
+
+    
+    const newTradeData = {
+      // id: initialId,
+      book: {
+        id: BookId,
+        book_NAME: 'Introduction to AI',
+      },
+      counterParty: {
+        id: CounterpartyId,
+        name: 'Alpha Traders',
+      },
+      security: {
+        id: SecurityId,
+        issuer: SecurityData.issuer,
+        maturityDate: SecurityData.maturityDate,
+        coupon: SecurityData.coupon,
+        type: SecurityData.type,
+        faceValue: SecurityData.faceValue,
+        status: SecurityData.status,
+        isin: SecurityData.isin,
+        cusip: SecurityData.cusip,
+      },
+      quantity: Quantity,
+      status: Status,
+      price: Price,
+      buySell: Buy_Sell,
+      tradeDate: TradeDate,
+      settlementDate: SettlementDate,
     };
 
-    const response = await fetch('http://localhost:8081/api/v1/createTrade', {
+    console.log(newTradeData)
+
+
+    const response = await fetch('http://localhost:8081/api/v1/saveTrade', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(newTradeData),
     });
-    console.log(JSON.stringify(response) + " " + JSON.stringify(formData))
+    console.log(JSON.stringify(response) + " " + JSON.stringify(newTradeData))
 
+    // navigate('/trade')
 
   };
 
@@ -150,9 +184,9 @@ function CreateTrade(props) {
               onChange={(e) => setStatus(e.target.value)}
               required
             >
-              <option value="Completed">Open</option>
-              <option value="Active">Close</option>
-              
+              <option value="Completed">Completed</option>
+              <option value="Pending">Pending</option>
+
             </Input>
 
 
@@ -180,7 +214,7 @@ function CreateTrade(props) {
 
 
           <button className="btn btn-primary btn-custom-2" type="submit">
-            Registration
+            CreateTrade
           </button>
         </Form>
       </div>

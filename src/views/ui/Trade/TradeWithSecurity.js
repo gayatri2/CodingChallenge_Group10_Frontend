@@ -32,30 +32,31 @@ function TradeWithSecurity(props) {
                         <Tr>
                             <Th scope="col">S.N</Th>
                             <Th scope="col">Quantity</Th>
-                            <Th scope = "col">Security</Th>
+                            <Th scope="col">Security</Th>
                             <Th scope="col">Status</Th>
                             <Th scope="col">Price</Th>
                             <Th scope="col">Counterparty</Th>
                             <Th scope="col">Buy_Sell</Th>
                             <Th scope="col">TradeDate</Th>
                             <Th scope="col">SettlementDate</Th>
+                            <Th scope="col">Action</Th>
                         </Tr>
                     </Thead>
                     <Tbody>
                         {tradeData.map((trade, index) => {
-                            console.log(trade)
-                            const {quantity, status, price, counterParty, buySell, tradeDate, settlementDate, security} = trade
+                            // console.log(trade)
+                            const { quantity, status, price, counterParty, buySell, tradeDate, settlementDate, security } = trade
                             // format settlement date and trade date
                             const settlementDateFormatted = new Date(settlementDate).toLocaleDateString()
                             const tradeDateFormatted = new Date(tradeDate).toLocaleDateString()
 
                             return (
                                 <Tr key={trade.id}>
-                                    <Th scope = "row">{index + 1}</Th>
-                                    <Th scope="row">{quantity}</Th>
+                                    <Th scope="row">{index + 1}</Th>
+                                    <Th >{quantity}</Th>
                                     <Th>{security.issuer}</Th>
                                     <Th
-                                        style = {{
+                                        style={{
                                             color: status === "Completed" ? "green" : "red",
                                             fontWeight: "bold"
                                         }}
@@ -65,9 +66,13 @@ function TradeWithSecurity(props) {
                                     <Th>{buySell}</Th>
                                     <Th>{tradeDateFormatted}</Th>
                                     <Th>{settlementDateFormatted}</Th>
+                                    <Th>
+
+                                    </Th>
+
 
                                 </Tr>
-                                
+
                             )
                         })}
                     </Tbody>

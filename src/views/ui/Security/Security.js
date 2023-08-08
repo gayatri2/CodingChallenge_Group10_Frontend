@@ -9,7 +9,7 @@ import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import axios from 'axios'
-import {Badge} from 'reactstrap' 
+import { Badge } from 'reactstrap'
 
 export default function Security(props) {
   const navigate = useNavigate()
@@ -116,20 +116,20 @@ export default function Security(props) {
                   <Td>{user.issuer}</Td>
                   <Td>{user.maturityDate}</Td>
                   <Td>
-    {user.status === 'Active' ? (
-        <Badge color="success">Active</Badge>
-    ) : (
-        <Badge color="danger">Inactive</Badge>
-    )}
-</Td>
+                    {user.status === 'Active' ? (
+                      <Badge color="success">Active</Badge>
+                    ) : (
+                      <Badge color="danger">Inactive</Badge>
+                    )}
+                  </Td>
 
-<Td>
-    {user.type === 'Bond' ? (
-        <Badge color="info">Bond</Badge>
-    ) : (
-        <Badge color="warning">Stock</Badge>
-    )}
-</Td>
+                  <Td>
+                    {user.type === 'Bond' ? (
+                      <Badge color="info">Bond</Badge>
+                    ) : (
+                      <Badge color="warning">Stock</Badge>
+                    )}
+                  </Td>
 
                   <Td>
 
