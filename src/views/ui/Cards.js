@@ -72,6 +72,7 @@ const Cards = () => {
               subtitle={blg.subtitle}
               text={blg.description}
               color={blg.btnbg}
+              link={blg.link}
             />
           </Col>
         ))}

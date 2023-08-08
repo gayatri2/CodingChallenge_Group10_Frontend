@@ -31,61 +31,61 @@ const BlogData = [
   },
   {
     image: bg3,
-    title: "Investment",
-    subtitle: "2 comments, 1 Like",
+    title: "Stock",
+    subtitle: "9 comments, 4 Like",
     description:
-      "An investment is an asset or item acquired with the goal of generating income or appreciation.",
+      "This is a wider card with supporting text below as a natural lead-in to additional content.",
     btnbg: "primary",
-    link:"https://en.wikipedia.org/wiki/Investment"
+    link:"https://www.investopedia.com/terms/b/bond.asp"
   },
   {
     image: bg4,
-    title: "Stock",
-    subtitle: "2 comments, 1 Like",
+    title: "Investment",
+    subtitle: "18 comments, 2 Like",
     description:
-      "A stock, also known as equity, is a security that represents the ownership of a fraction of the issuing corporation",
+      "This is a wider card with supporting text below as a natural lead-in to additional content.",
     btnbg: "primary",
-    link:"https://www.investopedia.com/terms/s/stock.asp"
+    link:"https://www.investopedia.com/terms/b/bond.asp"
   },
 ];
 
-
 const Starter = () => {
+
   return (
     <div>
-    {/***Top Cards***/}
+      {/***Top Cards***/}
 
-    {/***Sales & Feed***/}
-    <Row>
-      <Col sm="6" lg="6" xl="7" xxl="8">
-        <SalesChart />
-      </Col>
-      <Col sm="6" lg="6" xl="5" xxl="4">
-        <Feeds />
-      </Col>
-    </Row>
-    {/***Table ***/}
-    <Row>
-      <Col lg="12">
-        <ProjectTables />
-      </Col>
-    </Row>
-    {/***Blog Cards***/}
-    <Row>
-      {BlogData.map((blg, index) => (
-        <Col sm="6" lg="6" xl="3" key={index}>
-          <Blog
-            image={blg.image}
-            title={blg.title}
-            subtitle={blg.subtitle}
-            text={blg.description}
-            color={blg.btnbg}
-            link={blg.link}
-          />
+      {/***Sales & Feed***/}
+      <Row>
+        <Col sm="6" lg="6" xl="7" xxl="8">
+          <SalesChart />
         </Col>
-      ))}
-    </Row>
-  </div>
+        <Col sm="6" lg="6" xl="5" xxl="4">
+          <Feeds />
+        </Col>
+      </Row>
+      {/***Table ***/}
+      <Row>
+        <Col lg="12">
+          <ProjectTables />
+        </Col>
+      </Row>
+      {/***Blog Cards***/}
+      <Row>
+        {BlogData.map((blg, index) => (
+          <Col sm="6" lg="6" xl="3" key={index}>
+            <Blog
+              image={blg.image}
+              title={blg.title}
+              subtitle={blg.subtitle}
+              text={blg.description}
+              color={blg.btnbg}
+              link={blg.link}
+            />
+          </Col>
+        ))}
+      </Row>
+    </div>
   );
 };
 

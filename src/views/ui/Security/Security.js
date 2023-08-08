@@ -89,8 +89,9 @@ export default function Security(props) {
   return (
     <>
       <Link to="/createsecurity" state={{ id: securityData?.length + 1 }}>
-    
-        <Button outline color="success">CREATE <AddCircleIcon/></Button>{' '}
+      <Button outline color="success">CREATE <AddCircleIcon/></Button>{' '}
+
+
       </Link>
       {securityData?.length > 0 ? (
         <>
