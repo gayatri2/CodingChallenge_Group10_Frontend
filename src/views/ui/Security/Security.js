@@ -9,7 +9,8 @@ import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import axios from 'axios'
-import { Badge } from 'reactstrap'
+import { Badge,Button } from 'reactstrap'
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 export default function Security(props) {
   const navigate = useNavigate()
@@ -45,7 +46,7 @@ export default function Security(props) {
     });
 
     const info = await result.json();
-    // console.log(info)
+
 
     setsecurityData(info)
 
@@ -88,8 +89,8 @@ export default function Security(props) {
   return (
     <>
       <Link to="/createsecurity" state={{ id: securityData?.length + 1 }}>
-        <button>CREATE</button>
-
+    
+        <Button outline color="success">CREATE <AddCircleIcon/></Button>{' '}
       </Link>
       {securityData?.length > 0 ? (
         <>
@@ -177,10 +178,10 @@ export default function Security(props) {
                             <b>MaturityDate: {modalInfo?.maturityDate}</b><br />
                             <b>Status: {modalInfo?.status}</b><br />
                             <b>Type: {modalInfo?.type}</b><br />
-                            <button onClick={() => {
+                            <Button  outline color="info" onClick={() => {
                               handleCloseName();
                               SecurityTrade(modalInfo?.id);
-                            }}>Trades</button>
+                            }}>Trades</Button>
                           </Typography>
                         </Box>
                       </Fade>

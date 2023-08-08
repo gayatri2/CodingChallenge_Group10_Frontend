@@ -3,6 +3,8 @@ import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from 'axios'
 import TradeTable from './TradeTable';
+import { Badge,Button } from 'reactstrap'
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 export default function Trade(props) {
   const navigate = useNavigate()
@@ -55,7 +57,11 @@ export default function Trade(props) {
   return (
     <>
       <Link to="/createtrade" state={{ id: tradeData?.length + 1 }}>
-        <button>CREATE TRADE</button>
+
+      <Button outline color="success">CREATE <AddCircleIcon/></Button>{' '}
+
+   
+
       </Link>
       {tradeData?.length > 0 ? (
         <TradeTable tradeData={tradeData} />
