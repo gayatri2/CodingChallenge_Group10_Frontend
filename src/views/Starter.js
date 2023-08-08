@@ -12,35 +12,40 @@ import bg4 from "../assets/images/bg/bg4.jpg";
 const BlogData = [
   {
     image: bg1,
-    title: "This is simple blog",
-    subtitle: "2 comments, 1 Like",
+    title: "Bonds",
+    subtitle: "6 comments, 2 Like",
     description:
-      "This is a wider card with supporting text below as a natural lead-in to additional content.",
+      "How Bonds influence the whole market. How Bonds influence the whole market. How Bonds influence the whole market." ,
     btnbg: "primary",
+    link:"https://www.investopedia.com/terms/b/bond.asp"
+
   },
   {
     image: bg2,
-    title: "Lets be simple blog",
-    subtitle: "2 comments, 1 Like",
+    title: "Position",
+    subtitle: "12 comments, 8 Like",
     description:
-      "This is a wider card with supporting text below as a natural lead-in to additional content.",
+      "Position in the context of the market typically refers to the ownership or holding of a specific financial asset, such as stocks.",
     btnbg: "primary",
+    link:"https://www.mageplaza.com/blog/positioning-in-marketing.html"
   },
   {
     image: bg3,
-    title: "Don't Lamp blog",
-    subtitle: "2 comments, 1 Like",
+    title: "Stock",
+    subtitle: "9 comments, 4 Like",
     description:
       "This is a wider card with supporting text below as a natural lead-in to additional content.",
     btnbg: "primary",
+    link:"https://www.investopedia.com/terms/b/bond.asp"
   },
   {
     image: bg4,
-    title: "Simple is beautiful",
-    subtitle: "2 comments, 1 Like",
+    title: "Investment",
+    subtitle: "18 comments, 2 Like",
     description:
       "This is a wider card with supporting text below as a natural lead-in to additional content.",
     btnbg: "primary",
+    link:"https://www.investopedia.com/terms/b/bond.asp"
   },
 ];
 
@@ -75,6 +80,7 @@ const Starter = () => {
               subtitle={blg.subtitle}
               text={blg.description}
               color={blg.btnbg}
+              link={blg.link}
             />
           </Col>
         ))}

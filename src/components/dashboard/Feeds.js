@@ -8,6 +8,9 @@ import {
   ListGroupItem,
   Button,
 } from "reactstrap";
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init()
 
 const FeedData = [
   {
@@ -44,6 +47,7 @@ const FeedData = [
 
 const Feeds = () => {
   return (
+    <div data-aos="fade-left"  data-aos-duration="1500">
     <Card>
       <CardBody>
         <CardTitle tag="h5">Feeds</CardTitle>
@@ -58,6 +62,7 @@ const Feeds = () => {
               href="/"
               tag="a"
               className="d-flex align-items-center p-3 border-0"
+              data-aos="zoom-in"  data-aos-duration="3500"
             >
               <Button
                 className="rounded-circle me-3"
@@ -75,6 +80,7 @@ const Feeds = () => {
         </ListGroup>
       </CardBody>
     </Card>
+    </div>
   );
 };
 

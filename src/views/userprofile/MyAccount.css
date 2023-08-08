@@ -1,77 +1,76 @@
 .user-profile {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .user-header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 10px;
-    background-image: url('/src/assets/images/users/user1.jpg');
-    background-size: cover;
-    background-position: center;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
-  }
-  
-  .user-details {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-  
-  .detail {
-    padding: 10px;
-    background-color: #f5f5f5;
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .detail h3 {
-    margin: 0;
-  }
-  
-  .detail p {
-    margin: 0;
-    font-weight: bold;
-  }
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-  .bond-market {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-  }
-  
-  .bond-market .market-info {
-    flex: 1;
-    padding: 10px;
-    background-color: #e5f7fd;
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  
-  .bond-market .market-info h4 {
-    margin: 0;
-  }
-  
-  .bond-market .market-info p {
-    margin: 0;
-    font-size: 14px;
-    color: #555;
-  }
-  
-  /* Add media queries and additional styling as needed */
-  
+.user-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  background-image: url('/src/assets/images/users/user1.jpg');
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.user-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.detail {
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.detail h3 {
+  margin: 0;
+}
+
+.detail p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.bond-market {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.bond-market .market-info {
+  flex: 1;
+  padding: 10px;
+  background-color: #e5f7fd;
+  border-radius: 5px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.bond-market .market-info h4 {
+  margin: 0;
+}
+
+.bond-market .market-info p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* Add media queries and additional styling as needed */
