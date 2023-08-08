@@ -32,6 +32,10 @@ const Header = (props) => {
     navigate("/login");
   }
 
+  const navigateToRegister = () => {
+    navigate("/register");
+  }
+
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   const Handletoggle = () => {
     setIsOpen(!isOpen);
@@ -82,18 +86,18 @@ const Header = (props) => {
           </NavItem>
           <UncontrolledDropdown inNavbar nav>
             <DropdownToggle caret nav>
-              DD Menu
+            Menu
             </DropdownToggle>
             <DropdownMenu end>
-              <DropdownItem>Option 1</DropdownItem>
-              <DropdownItem>Option 2</DropdownItem>
+              <DropdownItem>Trades</DropdownItem>
+              <DropdownItem>Security</DropdownItem>
               <DropdownItem divider />
               <DropdownItem>Reset</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>
-        {
-          props.isLoggedIn === true ? 
+        {/* {
+          props.user !== null ?  */}
             <Dropdown isOpen={dropdownOpen} toggle={toggle}>
               <DropdownToggle color="transparent">
                 <img
@@ -113,12 +117,12 @@ const Header = (props) => {
                   <DropdownItem>Logout</DropdownItem>
               </DropdownMenu>
             </Dropdown>
-            :
+            {/* :
             <div className="button-group">
               <Button className="btn" color="success" size="sm" onClick={navigateToLogin}>Login</Button>  
-              <Button className="btn" color="info" size="sm">Register</Button>  
+              <Button className="btn" color="info" size="sm" onClick={navigateToRegister}>Register</Button>  
             </div>
-        }
+        } */}
       </Collapse>
     </Navbar>
   );

@@ -11,7 +11,7 @@ import axios from 'axios';
 function CreateSecurity(props) {
   const location = useLocation();
   console.log(location.state)
-  const { id} = location.state;
+  const { id } = location.state;
 
   // const { id } = location?.state;
   // const { formInformation } = location?.state;
@@ -24,7 +24,7 @@ function CreateSecurity(props) {
   const [type, setType] = useState('bond');
   const [maturityDate, setmaturityDate] = useState('');
   const initialId = issuer.length || 0;
-  
+
 
 
 
@@ -45,23 +45,23 @@ function CreateSecurity(props) {
       status,
       type,
       maturityDate
-      
+
     };
 
-      const response = await fetch('http://localhost:8081/api/v1/createSecurity', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-     console.log(JSON.stringify(response)+" "+JSON.stringify(formData))
+    const response = await fetch('http://localhost:8081/api/v1/createSecurity', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
+    console.log(JSON.stringify(response) + " " + JSON.stringify(formData))
 
 
   };
 
 
- 
+
 
   return (
     <div className="container">
@@ -104,16 +104,16 @@ function CreateSecurity(props) {
           </FormGroup>
 
           <FormGroup>
-    <Label for="maturityDate" style={{ color: 'black' }}>maturityDate</Label>
-    <Input
-      type="date"
-      name="maturityDate"
-      id="maturityDate"
-      value={maturityDate} // Make sure you have a state to manage the selected date
-      onChange={(e) => setmaturityDate(e.target.value)}
-      required
-    />
-  </FormGroup>
+            <Label for="maturityDate" style={{ color: 'black' }}>maturityDate</Label>
+            <Input
+              type="date"
+              name="maturityDate"
+              id="maturityDate"
+              value={maturityDate} // Make sure you have a state to manage the selected date
+              onChange={(e) => setmaturityDate(e.target.value)}
+              required
+            />
+          </FormGroup>
 
           <FormGroup>
             <Label for="type" style={{ color: 'black' }}><b>Type</b></Label>
@@ -122,7 +122,7 @@ function CreateSecurity(props) {
               name="type"
               id="type"
               defaultValue={type}
-             
+
               required
             >
               <option value="bond">Bond</option>
