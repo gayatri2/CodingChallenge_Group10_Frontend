@@ -7,6 +7,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 
 function UpdateSecurity(props) {
@@ -31,7 +33,8 @@ function UpdateSecurity(props) {
         const detail=await axios.get(`http://localhost:8081/api/v1/getSecurityById/${id}`)
         console.log(detail.data)
         setinfo(detail.data)
-      
+     
+ 
     }
 
 
@@ -59,6 +62,29 @@ function UpdateSecurity(props) {
             body: JSON.stringify(formData),
           });
          console.log(JSON.stringify(response)+" "+JSON.stringify(formData))
+         Swal.fire({
+          title: 'UPDATED SECURITY', 
+          icon: 'success',
+          dangerMode: true,
+          button: false,
+          showConfirmButton: false,
+          timer: 900,
+        })
+
+        // if(success)
+        // {
+        //   Swal.fire({
+        //     title: 'UPDATED SECURITY', 
+        //     icon: 'success',
+        //     dangerMode: true,
+        //     button: false,
+        //     showConfirmButton: false,
+        //     timer: 900,
+        //   })
+        // }
+        // else{
+        //   Swal.fire("ERROR","Something went wrong! Please try again later", "error")
+        // }
     
     
       };
@@ -165,7 +191,7 @@ function UpdateSecurity(props) {
           </FormGroup>
 
           <FormGroup>
-            <Label for="cusip" style={{ color: 'black' }}>Volunteer Work</Label>
+            <Label for="cusip" style={{ color: 'black' }}>Cusin</Label>
             <Input
               type="number"
               name="cusip"
@@ -202,7 +228,7 @@ function UpdateSecurity(props) {
           </FormGroup>
 
           <button className="btn btn-primary btn-custom-2" type="submit">
-            Registration
+            Update Security
           </button>
         </Form>
       </div>

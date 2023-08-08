@@ -12,14 +12,16 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 
 export default function Security(props) {
-  const navigate = useNavigate()
-  const [securityData, setsecurityData] = useState([])
-  const [open, setOpen] = React.useState(false);
-  const [openname, setOpenName] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  const handleOpenName = () => setOpenName(true);
-  const handleCloseName = () => setOpenName(false);
+    const navigate=useNavigate()
+    const [securityData, setsecurityData] = useState([])
+    const [modalInfo, setmodalInfo] = useState([])
+    const [open, setOpen] = React.useState(false);
+    const [openname, setOpenName] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const handleOpenName = () => setOpenName(true);
+    const handleCloseName = () => setOpenName(false);
+    
 
   const { securityId, setSecurityId } = useState(null);
 
@@ -60,6 +62,12 @@ export default function Security(props) {
       console.error('Error:', error);
     }
   };
+
+   const getData=async(id)=>{
+         const response=await axios.get( `http://localhost:8081/api/v1/getSecurityById/${id}`)
+         setmodalInfo(response.data)
+         console.log(modalInfo.id)
+   }
 
 
   const getSecurityById = async (id) => {
@@ -137,42 +145,60 @@ export default function Security(props) {
                           >
                             <b>Description</b>
 
-                          </Typography>
-                          <Typography id="transition-modal-description" sx={{ mt: 3 }}>
-                            <b>Coupon: {user.coupon}</b><br />
-                            <b>Cusip: {user.cusip}</b><br />
-                            <b>FaceValue: {user.faceValue}</b><br />
-                            <b>Isin: {user.isin}</b><br />
-                            <b>Issuer: {user.issuer}</b><br />
-                            <b>MaturityDate: {user.maturityDate}</b><br />
-                            <b>Status: {user.status}</b><br />
-                            <b>Type: {user.type}</b><br />
-                            <button onClick={() => {
-                              console.log(user.id)
-                              SecurityTrade(user.id)
-                            }}>
-                              Trades
-                            </button>
-                          </Typography>
-                        </Box>
-                      </Fade>
-                    </Modal>
-                    {/* <Link className="btn btn-primary mx-2" to={`/updatesecurity/${user.id}`}> */}
-                    {/* <Link className="btn btn-primary mx-2" to={`/updatesecurity/${user.id}`}  state={{id:user.id}}>
-                Update
-              </Link> */}
+            
+       <Link className="btn btn-outline-primary mx-2"   onClick={() => {
+    handleOpenName(); // Call the first function
+    getData(user.id);
+       }}
+              >
+                View
+              </Link>
+          {/* <Button onClick={handleOpenName}>Open modal</Button> */}
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            open={openname}
+            onClose={handleCloseName}
+            closeAfterTransition
+            BackdropComponent={Backdrop}
+            BackdropProps={{
+              timeout: 1500,
+            }}
+          >
+            <Fade in={openname}>
+              <Box sx={stylename}>
+                <Typography
+                  id="transition-modal-title"
+                  variant="h5"
+                  component="h4"
+                >
+                  <b>Description</b>
+                  
+                </Typography>
+                <Typography id="transition-modal-description" sx={{ mt: 3 }}>
+                  <b>Coupon: {modalInfo?.coupon}</b><br/>
+                  <b>Cusip: {modalInfo?.cusip}</b><br/>
+                  <b>FaceValue: {modalInfo?.faceValue}</b><br/>
+                  <b>Isin: {modalInfo?.isin}</b><br/>
+                  <b>Issuer: {modalInfo?.issuer}</b><br/>
+                  <b>MaturityDate: {modalInfo?.maturityDate}</b><br/>
+                  <b>Status: {modalInfo?.status}</b><br/>
+                  <b>Type: {modalInfo?.type}</b><br/>
+                  <button onClick={SecurityTrade}>GO TO SECURITY TRADE</button>
+                </Typography>
+              </Box>
+            </Fade>
+          </Modal>
+        
 
-                    <button
-                      className="btn btn-primary mx-2"
-                      onClick={() => navigate(`/updatesecurity/${user.id}`, { id: user.id })}
-                    >
-                      Update
-                    </button>
-                    <Link className="btn btn-outline-primary mx-2"
-                      onClick={() => Deletesecuritydata(user.isin)}
-                    >
-                      Delete
-                    </Link>
+        
+    <Link to= '/updatesecurity' state={{id:user.id, isinnumber:user.isin}}  className="btn btn-primary mx-2">
+Update</Link>
+              <Link className="btn btn-outline-primary mx-2" 
+                  onClick={() => Deletesecuritydata(user.isin)}
+              >
+                Delete
+              </Link>
 
 
                     {/* <button
