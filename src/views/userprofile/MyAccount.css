@@ -17,9 +17,12 @@
   .avatar {
     width: 100px;
     height: 100px;
-    background-color: #f1f1f1;
     border-radius: 50%;
     margin-bottom: 10px;
+    background-image: url('/src/assets/images/users/user1.jpg');
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
   }
   
   .user-details {
@@ -43,6 +46,31 @@
   .detail p {
     margin: 0;
     font-weight: bold;
+  }
+
+  .bond-market {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .bond-market .market-info {
+    flex: 1;
+    padding: 10px;
+    background-color: #e5f7fd;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .bond-market .market-info h4 {
+    margin: 0;
+  }
+  
+  .bond-market .market-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
   }
   
   /* Add media queries and additional styling as needed */
