@@ -11,14 +11,9 @@ import axios from 'axios';
 function CreateTrade(props) {
   const location = useLocation();
   const navigate = useNavigate();
-  // console.log(location.state)
-  const { id } = location.state;
-
-  // const { id } = location?.state;
-  // const { formInformation } = location?.state;
   const [BookId, setBookId] = useState(1);
   const [CounterpartyId, setCounterpartyId] = useState(201);
-  const [SecurityId, setSecurityId] = useState(301);
+  const [SecurityId, setSecurityId] = useState(location.state.securityId? location.state.securityId : 301);
   const [Quantity, setQuantity] = useState(0);
   const [Status, setStatus] = useState('Completed');
   const [Price, setPrice] = useState(0);
@@ -27,36 +22,29 @@ function CreateTrade(props) {
   const [SettlementDate, setSettlementDate] = useState(new Date());
 
 
-
-  // const initialId = issuer.length || 0;
-  const initialId = 0;
-
-  // const handleSubmit = (formInformation) => {
-  //   // Handle form submission, e.g., make an API request to save the data
-  //   console.log('Form data submitted:', formInformation);
-  // };
-
-  const getSecurityById = async (id) => {
-
-    // const SecurityData = await axios.get(`http://localhost:8081/api/v1/getSecurityById/${id}`)
-    const SecurityData = await axios.get(`http://localhost:8081/api/v1/getSecurityById/301`)
-
-  };
+  // console.log(location.state)
+  let id = 1;
+  if(location.state){
+    id = location.state.id
+  }
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const SecurityData = await axios.get(`http://localhost:8081/api/v1/getSecurityById/${SecurityId}`)
+    const CounterpartyData = await axios.get(`http://localhost:8081/api/v1/getCounterPartyById/${CounterpartyId}`)
+    const BookData = await axios.get(`http://localhost:8081/api/v1/getBookById/${BookId}`)
 
     
     const newTradeData = {
       // id: initialId,
       book: {
         id: BookId,
-        book_NAME: 'Introduction to AI',
+        book_NAME: BookData.data.book_NAME,
       },
       counterParty: {
         id: CounterpartyId,
-        name: 'Alpha Traders',
+        name: CounterpartyData.data.name,
       },
       security: {
         id: SecurityId,
@@ -89,7 +77,7 @@ function CreateTrade(props) {
     });
     console.log(JSON.stringify(response) + " " + JSON.stringify(newTradeData))
 
-    // navigate('/trade')
+    navigate('/trade')
 
   };
 
