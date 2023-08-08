@@ -1,6 +1,8 @@
 import { Card, CardBody, CardSubtitle, CardTitle } from "reactstrap";
 import Chart from "react-apexcharts";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
+AOS.init()
 const SalesChart = () => {
   const options = {
     chart: {
@@ -67,6 +69,7 @@ const SalesChart = () => {
   ];
 
   return (
+    <div data-aos="zoom-in"  data-aos-duration="1500">
     <Card>
       <CardBody>
         <CardTitle tag="h5">Security Status Summary</CardTitle>
@@ -76,6 +79,7 @@ const SalesChart = () => {
         <Chart options={options} series={series} type="bar" height="379" />
       </CardBody>
     </Card>
+    </div>
   );
 };
 

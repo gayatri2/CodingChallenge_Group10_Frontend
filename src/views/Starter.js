@@ -25,7 +25,7 @@ const BlogData = [
     title: "Position",
     subtitle: "12 comments, 8 Like",
     description:
-      "Position in the context of the market typically refers to the ownership or holding of a specific financial asset, such as stocks, bonds, commodities, or other investment instruments.",
+      "Position in the context of the market typically refers to the ownership or holding of a specific financial asset, such as stocks.",
     btnbg: "primary",
     link:"https://www.mageplaza.com/blog/positioning-in-marketing.html"
   },
@@ -80,6 +80,7 @@ const Starter = () => {
               subtitle={blg.subtitle}
               text={blg.description}
               color={blg.btnbg}
+              link={blg.link}
             />
           </Col>
         ))}
