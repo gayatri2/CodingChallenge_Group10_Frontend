@@ -166,13 +166,19 @@ export default function Security(props) {
               {/* <Link className="btn btn-primary mx-2" to={`/updatesecurity/${user.id}`}  state={{id:user.id}}>
                 Update
               </Link> */}
-
+{/* 
 <button
       className="btn btn-primary mx-2"
-      onClick={() => navigate(`/updatesecurity/${user.id}`, { id: user.id })}
+      onClick={() => navigate(`/updatesecurity/${user.id}`, { isin: user.isin })}
     >
       Update
-    </button>
+    </button> */}
+
+{/* <Link to="/createsecurity" state={{ id: securityData?.length+1 }}>
+        <button>CREATE</button>
+      </Link> */}
+    <Link to= '/updatesecurity' state={{id:user.id, isinnumber:user.isin}}  className="btn btn-primary mx-2">
+Update</Link>
               <Link className="btn btn-outline-primary mx-2" 
                   onClick={() => Deletesecuritydata(user.isin)}
               >
