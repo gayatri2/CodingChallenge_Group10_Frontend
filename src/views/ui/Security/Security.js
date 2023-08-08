@@ -45,7 +45,7 @@ export default function Security(props) {
     });
 
     const info = await result.json();
-    console.log(info)
+    // console.log(info)
 
     setsecurityData(info)
 

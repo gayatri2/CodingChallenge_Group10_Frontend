@@ -85,19 +85,21 @@ export default function UpdateTrade() {
             settlementDate: SettlementDate,
         };
 
-        console.log(newTradeData)
 
-
-        const response = await fetch('http://localhost:8081/api/v1/saveTrade', {
+        const response = await fetch(`http://localhost:8081/api/v1/updateTrade/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(newTradeData),
-        });
-        console.log(JSON.stringify(response) + " " + JSON.stringify(newTradeData))
+        }).then((response) =>{
+            console.log("Update Success")
+        }).catch((error) =>{
+            console.log("Update Failed")
+        })
 
-        navigate('/trade')
+        // navigate('/trade')
+        navigate(`/security/getTradewithsecurity/${SecurityId}`)
 
     };
 
