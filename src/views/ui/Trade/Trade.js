@@ -61,7 +61,7 @@ export default function Trade(props) {
 
       const getTradeById =  async(id) => {
            
-     const TradeData=await axios.get(`http://localhost:8081/api/v1/getTradeById/${SecId}`)
+     const TradeData=await axios.get(`http://localhost:8081/api/v1/getTradeById/${id}`)
      console.log(TradeData)
 
    };
@@ -74,8 +74,7 @@ export default function Trade(props) {
 
 
       useEffect(() => {
-        loadsecuritydata()
-        console.log(securityData)
+      
       }, [])
   return (
     <>
@@ -184,7 +183,7 @@ export default function Trade(props) {
     </Table>
   </>
 ) : (
-  <div>NO SECURITY FOUND.</div>
+  <div>NO TRADE FOUND.</div>
 )}
 
           </>
