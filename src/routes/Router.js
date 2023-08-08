@@ -20,7 +20,7 @@ const Trades=lazy(() => import("../views/ui/Trades"));
 const Security=lazy(() => import("../views/ui/Security/Security.js"));
 const CreateSecurity=lazy(() => import("../views/ui/Security/CreateSecurity.js"));
 const UpdateSecurity=lazy(() => import("../views/ui/Security/UpdateSecurity.js"));
-const Security=lazy(() => import("../views/ui/Security"));
+// const Security=lazy(() => import("../views/ui/Security"));
 const Login = lazy(() => import("../views/login"));
 /*****Routes******/
 
