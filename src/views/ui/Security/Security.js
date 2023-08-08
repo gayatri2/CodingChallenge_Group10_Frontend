@@ -46,7 +46,7 @@ export default function Security(props) {
     });
 
     const info = await result.json();
-    // console.log(info)
+
 
     setsecurityData(info)
 
@@ -90,6 +90,7 @@ export default function Security(props) {
     <>
       <Link to="/createsecurity" state={{ id: securityData?.length + 1 }}>
       <Button outline color="success">CREATE <AddCircleIcon/></Button>{' '}
+
 
       </Link>
       {securityData?.length > 0 ? (
@@ -178,10 +179,10 @@ export default function Security(props) {
                             <b>MaturityDate: {modalInfo?.maturityDate}</b><br />
                             <b>Status: {modalInfo?.status}</b><br />
                             <b>Type: {modalInfo?.type}</b><br />
-                            <button onClick={() => {
+                            <Button  outline color="info" onClick={() => {
                               handleCloseName();
                               SecurityTrade(modalInfo?.id);
-                            }}>Trades</button>
+                            }}>Trades</Button>
                           </Typography>
                         </Box>
                       </Fade>
