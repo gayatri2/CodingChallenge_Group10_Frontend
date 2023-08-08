@@ -17,6 +17,9 @@ const Tables = lazy(() => import("../views/ui/Tables"));
 const Forms = lazy(() => import("../views/ui/Forms"));
 const Breadcrumbs = lazy(() => import("../views/ui/Breadcrumbs"));
 const Trades=lazy(() => import("../views/ui/Trades"));
+const Security=lazy(() => import("../views/ui/Security/Security.js"));
+const CreateSecurity=lazy(() => import("../views/ui/Security/CreateSecurity.js"));
+const UpdateSecurity=lazy(() => import("../views/ui/Security/UpdateSecurity.js"));
 const Security=lazy(() => import("../views/ui/Security"));
 const Login = lazy(() => import("../views/login"));
 /*****Routes******/
@@ -45,7 +48,12 @@ const ThemeRoutes = [
       { path: "/breadcrumbs", exact: true, element: <Breadcrumbs /> },
       { path: "/trades", exact: true, element: <Trades /> },
       { path: "/security", exact: true, element: <Security /> },
+      { path: "/createsecurity", exact: true, element: <CreateSecurity /> },
+      { path: "/updatesecurity/:id", exact: true, element: <UpdateSecurity/> },
+    
       { path: "/myaccount", exact: true, element: <MyAccount /> },
+
+
     ],
   },
 ];
