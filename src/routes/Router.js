@@ -47,8 +47,8 @@ const ThemeRoutes = [
       { path: "/breadcrumbs", exact: true, element: <Breadcrumbs /> },
       { path: "/trades", exact: true, element: <Trades /> },
       { path: "/security", exact: true, element: <Security /> },
-      { path: "/createsecurity", exact: true, element: <CreateTrade /> },
-      { path: "/createtrade", exact: true, element: <CreateSecurity /> },
+      { path: "/createsecurity", exact: true, element: <CreateSecurity /> },
+      { path: "/createtrade", exact: true, element:  <CreateTrade/> },
       { path: "/updatesecurity/:id", exact: true, element: <UpdateSecurity/> },
       { path: "/security/gettradewithsecurity/:id", exact: true, element: <TradeWithSecurity/> },
     
