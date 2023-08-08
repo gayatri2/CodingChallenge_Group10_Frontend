@@ -27,7 +27,7 @@ const SalesChart = () => {
         borderRadius: 2,
       },
     },
-    colors: ["#0d6efd", "#009efb", "#6771dc"],
+    colors: ["#0d6efd", "#FF0000"],
     xaxis: {
       categories: [
         "Jan",
@@ -57,21 +57,21 @@ const SalesChart = () => {
   };
   const series = [
     {
-      name: "2020",
+      name: "2022",
       data: [20, 40, 50, 30, 40, 50, 30, 30, 40],
     },
     {
       name: "2022",
-      data: [10, 20, 40, 60, 20, 40, 60, 60, 20],
+      data: [10, 20, 10, 10, 20, 25, 10, 5, 20],
     },
   ];
 
   return (
     <Card>
       <CardBody>
-        <CardTitle tag="h5">Sales Summary</CardTitle>
+        <CardTitle tag="h5">Security Status Summary</CardTitle>
         <CardSubtitle className="text-muted" tag="h6">
-          Yearly Sales Report
+          Yearly Security Status Report
         </CardSubtitle>
         <Chart options={options} series={series} type="bar" height="379" />
       </CardBody>

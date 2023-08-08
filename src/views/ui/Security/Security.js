@@ -23,7 +23,6 @@ export default function Security(props) {
   const handleCloseName = () => setOpenName(false);
 
   const { securityId, setSecurityId } = useState(null);
-
   const stylename = {
     position: "absolute",
     top: "50%",
@@ -46,7 +45,8 @@ export default function Security(props) {
     });
 
     const info = await result.json();
-    //  console.log(info)
+    console.log(info)
+
     setsecurityData(info)
 
   };
@@ -72,6 +72,7 @@ export default function Security(props) {
   const getSecurityById = async (id) => {
 
     const SecurityData = await axios.get(`http://localhost:8081/api/v1/getSecurityById/${id}`)
+
     console.log(SecurityData)
 
   };
@@ -82,11 +83,13 @@ export default function Security(props) {
   useEffect(() => {
     loadsecuritydata()
     // console.log(securityData)
+
   }, [])
   return (
     <>
       <Link to="/createsecurity" state={{ id: securityData?.length + 1 }}>
-        <button>CREATE SECURITY</button>
+        <button>CREATE</button>
+
       </Link>
       {securityData?.length > 0 ? (
         <>
@@ -130,6 +133,7 @@ export default function Security(props) {
                     )}
                   </Td>
 
+
                   <Td>
 
 
@@ -137,6 +141,7 @@ export default function Security(props) {
                       handleOpenName(); // Call the first function
                       getData(user.id);
                     }}
+
                     >
                       View
                     </Link>
@@ -163,6 +168,7 @@ export default function Security(props) {
 
                           </Typography>
                           <Typography id="transition-modal-description" sx={{ mt: 3 }}>
+
                             <b>Coupon: {modalInfo?.coupon}</b><br />
                             <b>Cusip: {modalInfo?.cusip}</b><br />
                             <b>FaceValue: {modalInfo?.faceValue}</b><br />

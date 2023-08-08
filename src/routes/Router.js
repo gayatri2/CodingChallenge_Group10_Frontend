@@ -23,6 +23,9 @@ const UpdateSecurity = lazy(() => import("../views/ui/Security/UpdateSecurity.js
 const TradeWithSecurity = lazy(() => import("../views/ui/Trade/TradeWithSecurity.js"));
 const CreateTrade = lazy(() => import("../views/ui/Trade/CreateTrade.js"));
 const UpdateTrade = lazy(() => import("../views/ui/Trade/UpdateTrade.js"));
+const Register = lazy(() => import("../views/Regiser"));
+// const Security=lazy(() => import("../views/ui/Security"));
+const Login = lazy(() => import("../views/login"));
 /*****Routes******/
 
 
@@ -41,6 +44,7 @@ const ThemeRoutes = [
       { path: "/alerts", exact: true, element: <Alerts /> },
       { path: "/badges", exact: true, element: <Badges /> },
       { path: "/buttons", exact: true, element: <Buttons /> },
+      { path: "/login", exact: true, element: <Login /> },
       { path: "/cards", exact: true, element: <Cards /> },
       { path: "/grid", exact: true, element: <Grid /> },
       { path: "/table", exact: true, element: <Tables /> },
@@ -51,6 +55,8 @@ const ThemeRoutes = [
       { path: "/updatesecurity", exact: true, element: <UpdateSecurity /> },
       { path: "/security/gettradewithsecurity/:id", exact: true, element: <TradeWithSecurity /> },
       { path: "/trade", exact: true, element: <Trades /> },
+      { path: "/updatesecurity/:id", exact: true, element: <UpdateSecurity/> },
+      { path: "/register", exact: true, element: <Register /> },
       { path: "/myaccount", exact: true, element: <MyAccount /> },
       { path: "/createtrade", exact: true, element: <CreateTrade /> },
       { path: "/updatetrade", exact: true, element: <UpdateTrade /> },

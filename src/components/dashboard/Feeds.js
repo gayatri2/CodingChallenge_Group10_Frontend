@@ -11,40 +11,34 @@ import {
 
 const FeedData = [
   {
-    title: "Cras justo odio",
+    title: "John Doe",
     icon: "bi bi-bell",
     color: "primary",
-    date: "6 minute ago",
+    date: "101",
   },
   {
-    title: "New user registered.",
+    title: "Alex Chen",
     icon: "bi bi-person",
     color: "info",
-    date: "6 minute ago",
+    date: "102",
   },
   {
-    title: "Server #1 overloaded.",
+    title: "Emily Lee",
     icon: "bi bi-hdd",
     color: "danger",
-    date: "6 minute ago",
+    date: "103",
   },
   {
-    title: "New order received.",
+    title: "Mike Brown",
     icon: "bi bi-bag-check",
     color: "success",
-    date: "6 minute ago",
+    date: "104",
   },
   {
-    title: "Cras justo odio",
-    icon: "bi bi-bell",
-    color: "dark",
-    date: "6 minute ago",
-  },
-  {
-    title: "Server #1 overloaded.",
-    icon: "bi bi-hdd",
-    color: "warning",
-    date: "6 minute ago",
+    title: "Jane Smith",
+    icon: "bi bi-bag-check",
+    color: "success",
+    date: "105",
   },
 ];
 
