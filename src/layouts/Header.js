@@ -32,6 +32,10 @@ const Header = (props) => {
     navigate("/login");
   }
 
+  const navigateToRegister = () => {
+    navigate("/register");
+  }
+
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   const Handletoggle = () => {
     setIsOpen(!isOpen);
@@ -116,7 +120,7 @@ const Header = (props) => {
             :
             <div className="button-group">
               <Button className="btn" color="success" size="sm" onClick={navigateToLogin}>Login</Button>  
-              <Button className="btn" color="info" size="sm">Register</Button>  
+              <Button className="btn" color="info" size="sm" onClick={navigateToRegister}>Register</Button>  
             </div>
         }
       </Collapse>

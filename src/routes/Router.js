@@ -16,6 +16,7 @@ const Grid = lazy(() => import("../views/ui/Grid"));
 const Tables = lazy(() => import("../views/ui/Tables"));
 const Forms = lazy(() => import("../views/ui/Forms"));
 const Breadcrumbs = lazy(() => import("../views/ui/Breadcrumbs"));
+const Register = lazy(() => import("../views/Regiser"));
 const Trades=lazy(() => import("../views/ui/Trades"));
 const Security=lazy(() => import("../views/ui/Security/Security.js"));
 const CreateSecurity=lazy(() => import("../views/ui/Security/CreateSecurity.js"));
@@ -50,7 +51,7 @@ const ThemeRoutes = [
       { path: "/security", exact: true, element: <Security /> },
       { path: "/createsecurity", exact: true, element: <CreateSecurity /> },
       { path: "/updatesecurity/:id", exact: true, element: <UpdateSecurity/> },
-    
+      { path: "/register", exact: true, element: <Register /> },
       { path: "/myaccount", exact: true, element: <MyAccount /> },
 
 
