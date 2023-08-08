@@ -97,7 +97,7 @@ const Header = (props) => {
           </UncontrolledDropdown>
         </Nav>
         {
-          props.isLoggedIn === true ? 
+          props.user !== null ? 
             <Dropdown isOpen={dropdownOpen} toggle={toggle}>
               <DropdownToggle color="transparent">
                 <img

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
   const [name, setName] = useState('');
@@ -7,9 +8,9 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [role, setRole] = useState('user'); // Default role is 'user'
-  const [photo, setPhoto] = useState(null);
   const [error, setError] = useState('');
 
+  const navigate = useNavigate();
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -23,20 +24,14 @@ const RegisterPage = () => {
     formData.append('email', email);
     formData.append('password', password);
     formData.append('role', role);
-    if (photo) {
-      formData.append('photo', photo);
-    }
 
     try {
-      const response = await axios.post('/api/register', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      if (response.data === 'Registration successful') {
+      const response = await axios.post('http://localhost:8081/api/v1/addUser', formData);
+      console.log(response);
+      if (response.status === 200) {
         // Handle successful registration, such as redirecting to the login page
         console.log('Registration successful!');
+        navigate('/starter')
       } else {
         setError('Registration failed');
       }
@@ -116,17 +111,6 @@ const RegisterPage = () => {
             <option value="user">User</option>
             <option value="admin">Admin</option>
           </select>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="photo" className="form-label">
-            Photo:
-          </label>
-          <input
-            type="file"
-            className="form-control"
-            id="photo"
-            onChange={(e) => setPhoto(e.target.files[0])}
-          />
         </div>
         <button type="submit" className="btn btn-primary">
           Register
