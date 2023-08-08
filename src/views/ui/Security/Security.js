@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { LineAxisOutlined } from '@mui/icons-material';
 import Modal from "@mui/material/Modal";
 import Backdrop from "@mui/material/Backdrop";
@@ -9,19 +9,18 @@ import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
 
 export default function Security(props) {
-    const navigate=useNavigate()
-    const [securityData, setsecurityData] = useState([])
-    const [modalInfo, setmodalInfo] = useState([])
-    const [open, setOpen] = React.useState(false);
-    const [openname, setOpenName] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const handleOpenName = () => setOpenName(true);
-    const handleCloseName = () => setOpenName(false);
-    
+  const navigate = useNavigate()
+  const [securityData, setsecurityData] = useState([])
+  const [modalInfo, setmodalInfo] = useState([])
+  const [open, setOpen] = React.useState(false);
+  const [openname, setOpenName] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const handleOpenName = () => setOpenName(true);
+  const handleCloseName = () => setOpenName(false);
+
 
   const { securityId, setSecurityId } = useState(null);
 
@@ -63,11 +62,11 @@ export default function Security(props) {
     }
   };
 
-   const getData=async(id)=>{
-         const response=await axios.get( `http://localhost:8081/api/v1/getSecurityById/${id}`)
-         setmodalInfo(response.data)
-         console.log(modalInfo.id)
-   }
+  const getData = async (id) => {
+    const response = await axios.get(`http://localhost:8081/api/v1/getSecurityById/${id}`)
+    setmodalInfo(response.data)
+    console.log(modalInfo.id)
+  }
 
 
   const getSecurityById = async (id) => {
@@ -119,8 +118,12 @@ export default function Security(props) {
                   <Td>{user.type}</Td>
 
                   <Td>
-                    <Link className="btn btn-outline-primary mx-2" onClick={handleOpenName}
-                    // onClick={() => getSecurityById(user.id)}
+
+
+                    <Link className="btn btn-outline-primary mx-2" onClick={() => {
+                      handleOpenName(); // Call the first function
+                      getData(user.id);
+                    }}
                     >
                       View
                     </Link>
@@ -145,68 +148,34 @@ export default function Security(props) {
                           >
                             <b>Description</b>
 
-            
-       <Link className="btn btn-outline-primary mx-2"   onClick={() => {
-    handleOpenName(); // Call the first function
-    getData(user.id);
-       }}
-              >
-                View
-              </Link>
-          {/* <Button onClick={handleOpenName}>Open modal</Button> */}
-          <Modal
-            aria-labelledby="transition-modal-title"
-            aria-describedby="transition-modal-description"
-            open={openname}
-            onClose={handleCloseName}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 1500,
-            }}
-          >
-            <Fade in={openname}>
-              <Box sx={stylename}>
-                <Typography
-                  id="transition-modal-title"
-                  variant="h5"
-                  component="h4"
-                >
-                  <b>Description</b>
-                  
-                </Typography>
-                <Typography id="transition-modal-description" sx={{ mt: 3 }}>
-                  <b>Coupon: {modalInfo?.coupon}</b><br/>
-                  <b>Cusip: {modalInfo?.cusip}</b><br/>
-                  <b>FaceValue: {modalInfo?.faceValue}</b><br/>
-                  <b>Isin: {modalInfo?.isin}</b><br/>
-                  <b>Issuer: {modalInfo?.issuer}</b><br/>
-                  <b>MaturityDate: {modalInfo?.maturityDate}</b><br/>
-                  <b>Status: {modalInfo?.status}</b><br/>
-                  <b>Type: {modalInfo?.type}</b><br/>
-                  <button onClick={SecurityTrade}>GO TO SECURITY TRADE</button>
-                </Typography>
-              </Box>
-            </Fade>
-          </Modal>
-        
-
-        
-    <Link to= '/updatesecurity' state={{id:user.id, isinnumber:user.isin}}  className="btn btn-primary mx-2">
-Update</Link>
-              <Link className="btn btn-outline-primary mx-2" 
-                  onClick={() => Deletesecuritydata(user.isin)}
-              >
-                Delete
-              </Link>
+                          </Typography>
+                          <Typography id="transition-modal-description" sx={{ mt: 3 }}>
+                            <b>Coupon: {modalInfo?.coupon}</b><br />
+                            <b>Cusip: {modalInfo?.cusip}</b><br />
+                            <b>FaceValue: {modalInfo?.faceValue}</b><br />
+                            <b>Isin: {modalInfo?.isin}</b><br />
+                            <b>Issuer: {modalInfo?.issuer}</b><br />
+                            <b>MaturityDate: {modalInfo?.maturityDate}</b><br />
+                            <b>Status: {modalInfo?.status}</b><br />
+                            <b>Type: {modalInfo?.type}</b><br />
+                            <button onClick={() => {
+                              handleCloseName();
+                              SecurityTrade(modalInfo?.id);
+                            }}>Trades</button>
+                          </Typography>
+                        </Box>
+                      </Fade>
+                    </Modal>
 
 
-                    {/* <button
-                className="btn btn-danger mx-2"
-                onClick={() => deleteUser(user.id)}
-              >
-                Delete
-              </button> */}
+
+                    <Link to='/updatesecurity' state={{ id: user.id, isinnumber: user.isin }} className="btn btn-primary mx-2">
+                      Update</Link>
+                    <Link className="btn btn-outline-primary mx-2"
+                      onClick={() => Deletesecuritydata(user.isin)}
+                    >
+                      Delete
+                    </Link>
                   </Td>
                 </Tr>
               ))}
