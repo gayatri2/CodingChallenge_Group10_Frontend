@@ -59,9 +59,6 @@ function CreateTrade(props) {
 
   };
 
-
-
-
   return (
     <div className="container">
       <div className="register-box mx-auto">
@@ -75,12 +72,10 @@ function CreateTrade(props) {
               placeholder={id}
               disabled
             />
-          </FormGroup>
 
-          <FormGroup>
             <Label for="BookId" style={{ color: 'black' }}>BookId</Label>
             <Input
-              type="text"
+              type="number"
               name="BookId"
               id="bookid"
               placeholder="Enter BookId"
@@ -88,88 +83,79 @@ function CreateTrade(props) {
               onChange={(e) => setBookId(e.target.value)}
               required
             />
-          </FormGroup>
 
-          <FormGroup>
-            <Label for="coupon" style={{ color: 'black' }}>Coupon</Label>
-            <Input
-              type="number"
-              name="coupon"
-              id="coupon"
-              placeholder="Enter Coupon"
-              value={CounterpartyId}
-              // onChange={(e) => setCoupon(e.target.value)}
-            />
-          </FormGroup>
-
-          <FormGroup>
             <Label for="SecurityId" style={{ color: 'black' }}>SecurityId</Label>
             <Input
-              type="date"
+              type="number"
               name="SecurityId"
               id="SecurityId"
+              placeholder='Enter SecurityId'
               value={SecurityId} // Make sure you have a state to manage the selected date
               onChange={(e) => setSecurityId(e.target.value)}
               required
             />
-          </FormGroup>
-          <FormGroup>
+
+            <Label for="CounterPartyId" style={{ color: 'black' }}>CounterPartyId</Label>
+            <Input
+              type="number"
+              name="CounterPartyId"
+              id="CounterPartyId"
+              placeholder='Enter CounterPartyId'
+              value={CounterpartyId} // Make sure you have a state to manage the selected date
+              onChange={(e) => setCounterpartyId(e.target.value)}
+              required
+            />
+
             <Label for="Quantity" style={{ color: 'black' }}>Quantity</Label>
             <Input
-              type="date"
+              type="number"
               name="Quantity"
               id="Quantity"
               value={Quantity} // Make sure you have a state to manage the selected date
               onChange={(e) => setQuantity(e.target.value)}
               required
             />
-          </FormGroup>
 
-          <FormGroup>
             <Label for="Price" style={{ color: 'black' }}>Price</Label>
             <Input
-              type="date"
+              type="number"
               name="Price"
               id="Price"
               value={Price} // Make sure you have a state to manage the selected date
               onChange={(e) => setPrice(e.target.value)}
               required
             />
-          </FormGroup>
-          <FormGroup>
+
             <Label for="Buy_Sell" style={{ color: 'black' }}>Buy_Sell</Label>
+            {/* two options of buy/sell */}
             <Input
-              type="date"
+              type="select"
               name="Buy_Sell"
               id="Buy_Sell"
               value={Buy_Sell} // Make sure you have a state to manage the selected date
               onChange={(e) => setBuy_Sell(e.target.value)}
               required
-            />
-          </FormGroup>
-          <FormGroup>
+            >
+              <option value="Buy">Buy</option>
+              <option value="Sell">Sell</option>
+            </Input>
+
+
             <Label for="Status" style={{ color: 'black' }}>Status</Label>
             <Input
-              type="date"
+              type="select"
               name="Status"
               id="Status"
               value={Status} // Make sure you have a state to manage the selected date
               onChange={(e) => setStatus(e.target.value)}
               required
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="Price" style={{ color: 'black' }}>Price</Label>
-            <Input
-              type="date"
-              name="Price"
-              id="Price"
-              value={Price} // Make sure you have a state to manage the selected date
-              onChange={(e) => setPrice(e.target.value)}
-              required
-            />
-          </FormGroup>
-          <FormGroup>
+            >
+              <option value="Completed">Open</option>
+              <option value="Active">Close</option>
+              
+            </Input>
+
+
             <Label for="TradeDate" style={{ color: 'black' }}>TradeDate</Label>
             <Input
               type="date"
@@ -179,8 +165,7 @@ function CreateTrade(props) {
               onChange={(e) => setTradeDate(e.target.value)}
               required
             />
-          </FormGroup>
-          <FormGroup>
+
             <Label for="SettlementDate" style={{ color: 'black' }}>SettlementDate</Label>
             <Input
               type="date"

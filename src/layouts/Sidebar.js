@@ -20,7 +20,7 @@ const navigation = [
   },
   {
     title: "Trade",
-    href: "/trades",
+    href: "/trade",
     icon: "bi bi-bell",
   },
   {
