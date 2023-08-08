@@ -15,7 +15,7 @@ const FullLayout = () => {
 
         <div className="contentArea">
           {/********header**********/}
-          <Header />
+          <Header isLoggedIn={false} />
           {/********Middle Content**********/}
           <Container className="p-4 wrapper" fluid>
             <Outlet />
