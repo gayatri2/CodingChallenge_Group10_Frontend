@@ -21,6 +21,8 @@ export default function Security(props) {
   const handleOpenName = () => setOpenName(true);
   const handleCloseName = () => setOpenName(false);
 
+  const { securityId, setSecurityId } = useState(null);
+
   const stylename = {
     position: "absolute",
     top: "50%",
@@ -109,8 +111,6 @@ export default function Security(props) {
                   <Td>{user.type}</Td>
 
                   <Td>
-
-
                     <Link className="btn btn-outline-primary mx-2" onClick={handleOpenName}
                     // onClick={() => getSecurityById(user.id)}
                     >
@@ -147,14 +147,16 @@ export default function Security(props) {
                             <b>MaturityDate: {user.maturityDate}</b><br />
                             <b>Status: {user.status}</b><br />
                             <b>Type: {user.type}</b><br />
-                            <button onClick={() => SecurityTrade(user.id)}>Trades</button>
+                            <button onClick={() => {
+                              console.log(user.id)
+                              SecurityTrade(user.id)
+                            }}>
+                              Trades
+                            </button>
                           </Typography>
                         </Box>
                       </Fade>
                     </Modal>
-
-
-
                     {/* <Link className="btn btn-primary mx-2" to={`/updatesecurity/${user.id}`}> */}
                     {/* <Link className="btn btn-primary mx-2" to={`/updatesecurity/${user.id}`}  state={{id:user.id}}>
                 Update

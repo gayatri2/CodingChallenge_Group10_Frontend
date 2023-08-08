@@ -25,7 +25,8 @@ function CreateTrade(props) {
   const [TradeDate, setTradeDate] = useState('');
   const [SettlementDate, setSettlementDate] = useState('');
 
-  const initialId = issuer.length || 0;
+  // const initialId = issuer.length || 0;
+  const initialId = 0;
 
   // const handleSubmit = (formInformation) => {
   //   // Handle form submission, e.g., make an API request to save the data
@@ -97,7 +98,7 @@ function CreateTrade(props) {
               id="coupon"
               placeholder="Enter Coupon"
               value={CounterpartyId}
-              onChange={(e) => setCoupon(e.target.value)}
+              // onChange={(e) => setCoupon(e.target.value)}
             />
           </FormGroup>
 
