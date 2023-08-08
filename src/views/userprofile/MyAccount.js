@@ -1,5 +1,8 @@
 import React from 'react';
-
+import AOS from "aos";
+import "aos/dist/aos.css";
+import {Badge} from "reactstrap"
+AOS.init();
 function MyAccount(props) {
 
     const user = {
@@ -14,29 +17,39 @@ function MyAccount(props) {
 
 
     return (
-        <div className="user-profile">
-      <div className="user-header">
+        <div className="user-profile" data-aos="fade-up"
+        data-aos-duration="1500">
+      <div className="user-header" >
         <div className="avatar"></div>
-        <h2>{user.name}</h2>
-        <p>{user.username}</p>
+        <br/>
+        < h2 style={{marginLeft:"-20%"}} >{user.name}</h2>
+        <p  style={{marginLeft:"-20%"}} > {user.username}</p>
       </div>
       <div className="user-details">
-        <div className="detail">
-          <h3>Securities Held</h3>
-          <p>{user.securitiesHeld} bonds</p>
-        </div>
-        <div className="detail">
-          <h3>Trades Occurred</h3>
-          <p>{user.tradesOccurred} trades</p>
-        </div>
-        <div className="detail">
-          <h3>Account Created</h3>
-          <p>{user.daysAgoCreated} days ago</p>
-        </div>
-        <div className="detail">
-          <h3>Total Portfolio Value</h3>
-          <p>${user.totalPortfolioValue.toLocaleString()}</p>
-        </div>
+      <div className="detail">
+        <Badge color="primary" className="mb-2 larger-badge">
+          Securities Held
+        </Badge>
+        <p>{user.securitiesHeld} bonds</p>
+      </div>
+      <div className="detail">
+        <Badge color="success" className="mb-2 larger-badge">
+          Trades Occurred
+        </Badge>
+        <p>{user.tradesOccurred} trades</p>
+      </div>
+      <div className="detail">
+        <Badge color="info" className="mb-2 larger-badge">
+          Account Created
+        </Badge>
+        <p>{user.daysAgoCreated} days ago</p>
+      </div>
+      <div className="detail">
+        <Badge color="warning" className="mb-2 larger-badge">
+          Total Portfolio Value
+        </Badge>
+        <p>${user.totalPortfolioValue.toLocaleString()}</p>
+      </div>
       </div>
     </div>
       );
