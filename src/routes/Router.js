@@ -1,6 +1,5 @@
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
-import CreateTrade from "../views/ui/Trade/CreateTrade.js";
 
 /****Layouts*****/
 const FullLayout = lazy(() => import("../layouts/FullLayout.js"));
@@ -23,6 +22,7 @@ const CreateSecurity=lazy(() => import("../views/ui/Security/CreateSecurity.js")
 const UpdateSecurity=lazy(() => import("../views/ui/Security/UpdateSecurity.js"));
 const TradeWithSecurity=lazy(() => import("../views/ui/Trade/TradeWithSecurity.js"));
 const Trade=lazy(() => import("../views/ui/Trade/Trade.js"));
+const CreateTrade=lazy(() => import("../views/ui/Trade/CreateTrade.js"));
 /*****Routes******/
 
 
@@ -52,6 +52,7 @@ const ThemeRoutes = [
       { path: "/security/gettradewithsecurity/:id", exact: true, element: <TradeWithSecurity/> }, 
       { path: "/trade", exact: true, element: <Trade /> },
       { path: "/myaccount", exact: true, element: <MyAccount /> },
+      { path: "/createtrade", exact: true, element: <CreateTrade /> },
 
 
     ],
