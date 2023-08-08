@@ -43,26 +43,33 @@ export default function Security(props) {
         });
     
         const info = await result.json();
-         console.log(info)
+        //  console.log(info)
          setsecurityData(info)
     
       };
 
-      const Deletesecuritydata = async (user) => {
+      const Deletesecuritydata = async (id) => {
             
-           console.log(user)
-           const SecurityData=await axios.post(`http://localhost:8081/api/v1/deleteSecurity/${user}`) 
-           console.log(SecurityData)
+        try {
+          console.log(id)
+          const SecurityData = await axios.post('http://localhost:8081/api/v1/deleteSecurity', id);
+          console.log(SecurityData.data);
+      } catch (error) {
+          console.error('Error:', error);
+      }
       };
            
 
       const getSecurityById =  async(id) => {
            
-     const SecurityData=await axios.get(`http://localhost:8081/api/v1/getSecurityById/${SecId}`)
+     const SecurityData=await axios.get(`http://localhost:8081/api/v1/getSecurityById/${id}`)
      console.log(SecurityData)
 
    };
-
+     
+   const SecurityTrade=()=>{
+        navigate('gettradewithsecurity')
+   }
 
 
 
@@ -72,7 +79,7 @@ export default function Security(props) {
 
       useEffect(() => {
         loadsecuritydata()
-        console.log(securityData)
+        // console.log(securityData)
       }, [])
   return (
     <>
@@ -147,6 +154,7 @@ export default function Security(props) {
                   <b>MaturityDate: {user.maturityDate}</b><br/>
                   <b>Status: {user.status}</b><br/>
                   <b>Type: {user.type}</b><br/>
+                  <button onClick={SecurityTrade}>GO TO SECURITY TRADE</button>
                 </Typography>
               </Box>
             </Fade>
@@ -166,7 +174,7 @@ export default function Security(props) {
       Update
     </button>
               <Link className="btn btn-outline-primary mx-2" 
-                  onClick={() => Deletesecuritydata(user)}
+                  onClick={() => Deletesecuritydata(user.isin)}
               >
                 Delete
               </Link>
