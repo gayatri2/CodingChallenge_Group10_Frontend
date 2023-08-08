@@ -1,0 +1,49 @@
+.user-profile {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .user-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .user-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .detail {
+    padding: 10px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .detail h3 {
+    margin: 0;
+  }
+  
+  .detail p {
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  /* Add media queries and additional styling as needed */
+  
