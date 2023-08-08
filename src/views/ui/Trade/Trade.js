@@ -57,7 +57,11 @@ export default function Trade(props) {
   return (
     <>
       <Link to="/createtrade" state={{ id: tradeData?.length + 1 }}>
+
       <Button outline color="success">CREATE <AddCircleIcon/></Button>{' '}
+
+   
+
       </Link>
       {tradeData?.length > 0 ? (
         <TradeTable tradeData={tradeData} />

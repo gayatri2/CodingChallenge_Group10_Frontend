@@ -1,15 +1,10 @@
-import React, {useState} from "react";
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import React, { useState } from "react";
+import { Table, Thead, Tbody, Tr, Th } from 'react-super-responsive-table';
+import { Link } from "react-router-dom";
+
 
 const TradeTable = ({ tradeData }) => {
     // create a modal to edit the trade
-    const [open, setOpen] = useState(false);
-    const [openname, setOpenName] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    const handleOpenName = () => setOpenName(true);
-    const handleCloseName = () => setOpenName(false);
-
 
     return (
         <Table className="table table-bordered table-hover">
@@ -52,18 +47,12 @@ const TradeTable = ({ tradeData }) => {
                             <Th>{tradeDateFormatted}</Th>
                             <Th>{settlementDateFormatted}</Th>
                             <Th>
-                                <button
-                                    className="btn btn-primary mr-2"
-                                    onClick={() => handleOpen()}
-                                >
-                                    Edit
-                                </button>
-                                <button
-                                    className="btn btn-danger"
-                                    onClick={() => handleOpenName()}
-                                >
-                                    Delete
-                                </button>
+                                <Link to='/updatetrade'
+                                    state={{ id: trade.id }}
+                                    className="btn btn-primary mx-2">
+                                    Update
+                                </Link>
+
 
 
                             </Th>
