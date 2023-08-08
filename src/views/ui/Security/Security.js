@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import { LineAxisOutlined } from '@mui/icons-material';
 import Modal from "@mui/material/Modal";
 import Backdrop from "@mui/material/Backdrop";
@@ -9,11 +9,12 @@ import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { Badge } from 'reactstrap'
 
 export default function Security(props) {
   const navigate = useNavigate()
   const [securityData, setsecurityData] = useState([])
+  const [modalInfo, setmodalInfo] = useState([])
   const [open, setOpen] = React.useState(false);
   const [openname, setOpenName] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -21,6 +22,7 @@ export default function Security(props) {
   const handleOpenName = () => setOpenName(true);
   const handleCloseName = () => setOpenName(false);
 
+  const { securityId, setSecurityId } = useState(null);
   const stylename = {
     position: "absolute",
     top: "50%",
@@ -43,34 +45,51 @@ export default function Security(props) {
     });
 
     const info = await result.json();
-    console.log(info)
+    // console.log(info)
+
     setsecurityData(info)
 
   };
 
-  const Deletesecuritydata = async (user) => {
+  const Deletesecuritydata = async (id) => {
 
-    console.log(user)
-    const SecurityData = await axios.post(`http://localhost:8081/api/v1/deleteSecurity/${user}`)
-    console.log(SecurityData)
+    try {
+      console.log(id)
+      const SecurityData = await axios.post('http://localhost:8081/api/v1/deleteSecurity', id);
+      console.log(SecurityData.data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
+
+  const getData = async (id) => {
+    const response = await axios.get(`http://localhost:8081/api/v1/getSecurityById/${id}`)
+    setmodalInfo(response.data)
+    console.log(modalInfo.id)
+  }
 
 
   const getSecurityById = async (id) => {
 
-    const SecurityData = await axios.get(`http://localhost:8081/api/v1/getSecurityById/${SecId}`)
+    const SecurityData = await axios.get(`http://localhost:8081/api/v1/getSecurityById/${id}`)
+
     console.log(SecurityData)
 
   };
 
+  const SecurityTrade = (id) => {
+    navigate(`gettradewithsecurity/${id}`)
+  }
   useEffect(() => {
     loadsecuritydata()
-    console.log(securityData)
+    // console.log(securityData)
+
   }, [])
   return (
     <>
       <Link to="/createsecurity" state={{ id: securityData?.length + 1 }}>
         <button>CREATE</button>
+
       </Link>
       {securityData?.length > 0 ? (
         <>
@@ -98,14 +117,31 @@ export default function Security(props) {
                   <Td>{user.isin}</Td>
                   <Td>{user.issuer}</Td>
                   <Td>{user.maturityDate}</Td>
-                  <Td>{user.status}</Td>
-                  <Td>{user.type}</Td>
+                  <Td>
+                    {user.status === 'Active' ? (
+                      <Badge color="success">Active</Badge>
+                    ) : (
+                      <Badge color="danger">Inactive</Badge>
+                    )}
+                  </Td>
+
+                  <Td>
+                    {user.type === 'Bond' ? (
+                      <Badge color="info">Bond</Badge>
+                    ) : (
+                      <Badge color="warning">Stock</Badge>
+                    )}
+                  </Td>
+
 
                   <Td>
 
 
-                    <Link className="btn btn-outline-primary mx-2" onClick={handleOpenName}
-                    // onClick={() => getSecurityById(user.id)}
+                    <Link className="btn btn-outline-primary mx-2" onClick={() => {
+                      handleOpenName(); // Call the first function
+                      getData(user.id);
+                    }}
+
                     >
                       View
                     </Link>
@@ -132,14 +168,19 @@ export default function Security(props) {
 
                           </Typography>
                           <Typography id="transition-modal-description" sx={{ mt: 3 }}>
-                            <b>Coupon: {user.coupon}</b><br />
-                            <b>Cusip: {user.cusip}</b><br />
-                            <b>FaceValue: {user.faceValue}</b><br />
-                            <b>Isin: {user.isin}</b><br />
-                            <b>Issuer: {user.issuer}</b><br />
-                            <b>MaturityDate: {user.maturityDate}</b><br />
-                            <b>Status: {user.status}</b><br />
-                            <b>Type: {user.type}</b><br />
+
+                            <b>Coupon: {modalInfo?.coupon}</b><br />
+                            <b>Cusip: {modalInfo?.cusip}</b><br />
+                            <b>FaceValue: {modalInfo?.faceValue}</b><br />
+                            <b>Isin: {modalInfo?.isin}</b><br />
+                            <b>Issuer: {modalInfo?.issuer}</b><br />
+                            <b>MaturityDate: {modalInfo?.maturityDate}</b><br />
+                            <b>Status: {modalInfo?.status}</b><br />
+                            <b>Type: {modalInfo?.type}</b><br />
+                            <button onClick={() => {
+                              handleCloseName();
+                              SecurityTrade(modalInfo?.id);
+                            }}>Trades</button>
                           </Typography>
                         </Box>
                       </Fade>
@@ -147,30 +188,13 @@ export default function Security(props) {
 
 
 
-                    {/* <Link className="btn btn-primary mx-2" to={`/updatesecurity/${user.id}`}> */}
-                    {/* <Link className="btn btn-primary mx-2" to={`/updatesecurity/${user.id}`}  state={{id:user.id}}>
-                Update
-              </Link> */}
-
-                    <button
-                      className="btn btn-primary mx-2"
-                      onClick={() => navigate(`/updatesecurity/${user.id}`, { id: user.id })}
-                    >
-                      Update
-                    </button>
+                    <Link to='/updatesecurity' state={{ id: user.id, isinnumber: user.isin }} className="btn btn-primary mx-2">
+                      Update</Link>
                     <Link className="btn btn-outline-primary mx-2"
-                      onClick={() => Deletesecuritydata(user)}
+                      onClick={() => Deletesecuritydata(user.isin)}
                     >
                       Delete
                     </Link>
-
-
-                    {/* <button
-                className="btn btn-danger mx-2"
-                onClick={() => deleteUser(user.id)}
-              >
-                Delete
-              </button> */}
                   </Td>
                 </Tr>
               ))}
