@@ -55,7 +55,7 @@ export default function Trade(props) {
   return (
     <>
       <Link to="/createtrade" state={{ id: tradeData?.length + 1 }}>
-        <button>CREATE</button>
+        <button>CREATE TRADE</button>
       </Link>
       {tradeData?.length > 0 ? (
         <TradeTable tradeData={tradeData} />

@@ -22,7 +22,6 @@ export default function Security(props) {
   const handleOpenName = () => setOpenName(true);
   const handleCloseName = () => setOpenName(false);
 
-
   const { securityId, setSecurityId } = useState(null);
 
   const stylename = {

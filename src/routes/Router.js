@@ -22,6 +22,7 @@ const CreateSecurity = lazy(() => import("../views/ui/Security/CreateSecurity.js
 const UpdateSecurity = lazy(() => import("../views/ui/Security/UpdateSecurity.js"));
 const TradeWithSecurity = lazy(() => import("../views/ui/Trade/TradeWithSecurity.js"));
 const CreateTrade = lazy(() => import("../views/ui/Trade/CreateTrade.js"));
+const UpdateTrade = lazy(() => import("../views/ui/Trade/UpdateTrade.js"));
 /*****Routes******/
 
 
@@ -52,8 +53,7 @@ const ThemeRoutes = [
       { path: "/trade", exact: true, element: <Trades /> },
       { path: "/myaccount", exact: true, element: <MyAccount /> },
       { path: "/createtrade", exact: true, element: <CreateTrade /> },
-
-
+      { path: "/updatetrade", exact: true, element: <UpdateTrade /> },
     ],
   },
 ];
