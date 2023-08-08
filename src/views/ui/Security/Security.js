@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import { Link, useParams, useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import Fade from "@mui/material/Fade";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import axios from 'axios'
-import { Badge } from 'reactstrap'
+import { Badge, Form, FormGroup, Label, Input } from 'reactstrap';
 
 export default function Security(props) {
   const navigate = useNavigate()
@@ -17,6 +17,9 @@ export default function Security(props) {
   const [modalInfo, setmodalInfo] = useState([])
   const [open, setOpen] = React.useState(false);
   const [openname, setOpenName] = useState(false);
+  const [startDate, setStartDate] = useState('2025-01-01');
+  const [endDate, setEndDate] = useState('2029-01-01');
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleOpenName = () => setOpenName(true);
@@ -65,7 +68,7 @@ export default function Security(props) {
   const getData = async (id) => {
     const response = await axios.get(`http://localhost:8081/api/v1/getSecurityById/${id}`)
     setmodalInfo(response.data)
-    console.log(modalInfo.id)
+    // console.log(modalInfo.id)
   }
 
 
@@ -80,18 +83,55 @@ export default function Security(props) {
   const SecurityTrade = (id) => {
     navigate(`gettradewithsecurity/${id}`)
   }
+
+  const filterSecurityData = (startDate, endDate) => {
+    console.log(startDate, endDate);
+    const fstartDate = new Date(startDate);
+    const fendDate = new Date(endDate);
+    const filteredSecurityData = securityData.filter((security) => {
+      const securityDate = new Date(security.maturityDate);
+      return securityDate >= fstartDate && securityDate <= fendDate;
+    });
+    console.log(filteredSecurityData.length)
+    setsecurityData(filteredSecurityData);
+    console.log(filteredSecurityData.length);
+  };
+
   useEffect(() => {
     loadsecuritydata()
-    // console.log(securityData)
-
   }, [])
+
+  
+
+ 
   return (
     <>
       <Link to="/createsecurity" state={{ id: securityData?.length + 1 }}>
-        <button>CREATE</button>
-
+        <button>CREATE SECURITY</button>
       </Link>
-      {securityData?.length > 0 ? (
+      <div className="d-flex justify-content-between">
+        <Input
+          type = "date"
+          value={startDate}
+          onChange={(e) => {
+            // change date to yyyy-mm-dd format
+            setStartDate(e.target.value);
+          }}
+          // have default value as today's date
+
+        />
+        <Input
+          type = "date"
+          value={endDate}
+          onChange={(e) => {
+            // change date to yyyy-mm-dd format
+            setEndDate(e.target.value);
+          }}
+        />
+        <button onClick={() => filterSecurityData(startDate, endDate)}>Filter</button>
+      </div>
+      
+      {securityData.length > 0 ? (
         <>
           <Table>
             <Thead>
@@ -108,17 +148,18 @@ export default function Security(props) {
               </Tr>
             </Thead>
             <Tbody>
-              {securityData.map((user, index) => (
-                <Tr key={user.id}>
+              {securityData.map((security, index) => {
+                return (
+                <Tr key={security.id}>
                   <Th scope="row">{index + 1}</Th>
-                  <Td>{user.coupon}</Td>
-                  <Td>{user.cusip}</Td>
-                  <Td>{user.faceValue}</Td>
-                  <Td>{user.isin}</Td>
-                  <Td>{user.issuer}</Td>
-                  <Td>{user.maturityDate}</Td>
+                  <Td>{security.coupon}</Td>
+                  <Td>{security.cusip}</Td>
+                  <Td>{security.faceValue}</Td>
+                  <Td>{security.isin}</Td>
+                  <Td>{security.issuer}</Td>
+                  <Td>{new Date(security.maturityDate).toLocaleDateString()}</Td>
                   <Td>
-                    {user.status === 'Active' ? (
+                    {security.status === 'Active' ? (
                       <Badge color="success">Active</Badge>
                     ) : (
                       <Badge color="danger">Inactive</Badge>
@@ -126,7 +167,7 @@ export default function Security(props) {
                   </Td>
 
                   <Td>
-                    {user.type === 'Bond' ? (
+                    {security.type === 'Bond' ? (
                       <Badge color="info">Bond</Badge>
                     ) : (
                       <Badge color="warning">Stock</Badge>
@@ -139,7 +180,7 @@ export default function Security(props) {
 
                     <Link className="btn btn-outline-primary mx-2" onClick={() => {
                       handleOpenName(); // Call the first function
-                      getData(user.id);
+                      getData(security.id);
                     }}
 
                     >
@@ -188,16 +229,16 @@ export default function Security(props) {
 
 
 
-                    <Link to='/updatesecurity' state={{ id: user.id, isinnumber: user.isin }} className="btn btn-primary mx-2">
+                    <Link to='/updatesecurity' state={{ id: security.id, isinnumber: security.isin }} className="btn btn-primary mx-2">
                       Update</Link>
                     <Link className="btn btn-outline-primary mx-2"
-                      onClick={() => Deletesecuritydata(user.isin)}
+                      onClick={() => Deletesecuritydata(security.isin)}
                     >
                       Delete
                     </Link>
                   </Td>
                 </Tr>
-              ))}
+              )})}
             </Tbody>
           </Table>
         </>
