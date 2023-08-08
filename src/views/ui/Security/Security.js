@@ -93,47 +93,47 @@ export default function Security(props) {
       const securityDate = new Date(security.maturityDate);
       return securityDate >= fstartDate && securityDate <= fendDate;
     });
-    console.log(filteredSecurityData.length)
+    // console.log(filteredSecurityData.length)
     setsecurityData(filteredSecurityData);
-    console.log(filteredSecurityData.length);
+    // console.log(filteredSecurityData.length);
   };
 
   useEffect(() => {
     loadsecuritydata()
   }, [])
 
-  
 
- 
+
+
   return (
     <>
       <Link to="/createsecurity" state={{ id: securityData?.length + 1 }}>
-      <Button outline color="success">CREATE <AddCircleIcon/></Button>{' '}
-
-
+        <Button outline color="success">CREATE <AddCircleIcon /></Button>{' '}
       </Link>
-      <div className="d-flex justify-content-between">
+      {/* reduce width  */}
+      <div className="d-flex justify-content-between align-items-center mt-3 mb-3" style={{ width: '50%' }}>
         <Input
-          type = "date"
+          type="date"
           value={startDate}
           onChange={(e) => {
             // change date to yyyy-mm-dd format
             setStartDate(e.target.value);
           }}
-          // have default value as today's date
+        // have default value as today's date
 
         />
         <Input
-          type = "date"
+          type="date"
           value={endDate}
           onChange={(e) => {
             // change date to yyyy-mm-dd format
             setEndDate(e.target.value);
           }}
         />
-        <button onClick={() => filterSecurityData(startDate, endDate)}>Filter</button>
+        {/* <button onClick={() => filterSecurityData(startDate, endDate)}>Filter</button> */}
+        <Button outline color="primary" onClick={() => filterSecurityData(startDate, endDate)}>Filter</Button>{' '}
       </div>
-      
+
       {securityData.length > 0 ? (
         <>
           <Table>
@@ -153,95 +153,96 @@ export default function Security(props) {
             <Tbody>
               {securityData.map((security, index) => {
                 return (
-                <Tr key={security.id}>
-                  <Th scope="row">{index + 1}</Th>
-                  <Td>{security.coupon}</Td>
-                  <Td>{security.cusip}</Td>
-                  <Td>{security.faceValue}</Td>
-                  <Td>{security.isin}</Td>
-                  <Td>{security.issuer}</Td>
-                  <Td>{new Date(security.maturityDate).toLocaleDateString()}</Td>
-                  <Td>
-                    {security.status === 'Active' ? (
-                      <Badge color="success">Active</Badge>
-                    ) : (
-                      <Badge color="danger">Inactive</Badge>
-                    )}
-                  </Td>
+                  <Tr key={security.id}>
+                    <Th scope="row">{index + 1}</Th>
+                    <Td>{security.coupon}</Td>
+                    <Td>{security.cusip}</Td>
+                    <Td>{security.faceValue}</Td>
+                    <Td>{security.isin}</Td>
+                    <Td>{security.issuer}</Td>
+                    <Td>{new Date(security.maturityDate).toLocaleDateString()}</Td>
+                    <Td>
+                      {security.status === 'Active' ? (
+                        <Badge color="success">Active</Badge>
+                      ) : (
+                        <Badge color="danger">Inactive</Badge>
+                      )}
+                    </Td>
 
-                  <Td>
-                    {security.type === 'Bond' ? (
-                      <Badge color="info">Bond</Badge>
-                    ) : (
-                      <Badge color="warning">Stock</Badge>
-                    )}
-                  </Td>
-
-
-                  <Td>
+                    <Td>
+                      {security.type === 'Bond' ? (
+                        <Badge color="info">Bond</Badge>
+                      ) : (
+                        <Badge color="warning">Stock</Badge>
+                      )}
+                    </Td>
 
 
-                    <Link className="btn btn-outline-primary mx-2" onClick={() => {
-                      handleOpenName(); // Call the first function
-                      getData(security.id);
-                    }}
+                    <Td>
 
-                    >
-                      View
-                    </Link>
-                    {/* <Button onClick={handleOpenName}>Open modal</Button> */}
-                    <Modal
-                      aria-labelledby="transition-modal-title"
-                      aria-describedby="transition-modal-description"
-                      open={openname}
-                      onClose={handleCloseName}
-                      closeAfterTransition
-                      BackdropComponent={Backdrop}
-                      BackdropProps={{
-                        timeout: 1500,
+
+                      <Link className="btn btn-outline-primary mx-2" onClick={() => {
+                        handleOpenName(); // Call the first function
+                        getData(security.id);
                       }}
-                    >
-                      <Fade in={openname}>
-                        <Box sx={stylename}>
-                          <Typography
-                            id="transition-modal-title"
-                            variant="h5"
-                            component="h4"
-                          >
-                            <b>Description</b>
 
-                          </Typography>
-                          <Typography id="transition-modal-description" sx={{ mt: 3 }}>
+                      >
+                        View
+                      </Link>
+                      {/* <Button onClick={handleOpenName}>Open modal</Button> */}
+                      <Modal
+                        aria-labelledby="transition-modal-title"
+                        aria-describedby="transition-modal-description"
+                        open={openname}
+                        onClose={handleCloseName}
+                        closeAfterTransition
+                        BackdropComponent={Backdrop}
+                        BackdropProps={{
+                          timeout: 1500,
+                        }}
+                      >
+                        <Fade in={openname}>
+                          <Box sx={stylename}>
+                            <Typography
+                              id="transition-modal-title"
+                              variant="h5"
+                              component="h4"
+                            >
+                              <b>Description</b>
 
-                            <b>Coupon: {modalInfo?.coupon}</b><br />
-                            <b>Cusip: {modalInfo?.cusip}</b><br />
-                            <b>FaceValue: {modalInfo?.faceValue}</b><br />
-                            <b>Isin: {modalInfo?.isin}</b><br />
-                            <b>Issuer: {modalInfo?.issuer}</b><br />
-                            <b>MaturityDate: {modalInfo?.maturityDate}</b><br />
-                            <b>Status: {modalInfo?.status}</b><br />
-                            <b>Type: {modalInfo?.type}</b><br />
-                            <Button  outline color="info" onClick={() => {
-                              handleCloseName();
-                              SecurityTrade(modalInfo?.id);
-                            }}>Trades</Button>
-                          </Typography>
-                        </Box>
-                      </Fade>
-                    </Modal>
+                            </Typography>
+                            <Typography id="transition-modal-description" sx={{ mt: 3 }}>
+
+                              <b>Coupon: {modalInfo?.coupon}</b><br />
+                              <b>Cusip: {modalInfo?.cusip}</b><br />
+                              <b>FaceValue: {modalInfo?.faceValue}</b><br />
+                              <b>Isin: {modalInfo?.isin}</b><br />
+                              <b>Issuer: {modalInfo?.issuer}</b><br />
+                              <b>MaturityDate: {modalInfo?.maturityDate}</b><br />
+                              <b>Status: {modalInfo?.status}</b><br />
+                              <b>Type: {modalInfo?.type}</b><br />
+                              <Button outline color="info" onClick={() => {
+                                handleCloseName();
+                                SecurityTrade(modalInfo?.id);
+                              }}>Trades</Button>
+                            </Typography>
+                          </Box>
+                        </Fade>
+                      </Modal>
 
 
 
-                    <Link to='/updatesecurity' state={{ id: security.id, isinnumber: security.isin }} className="btn btn-primary mx-2">
-                      Update</Link>
-                    <Link className="btn btn-outline-primary mx-2"
-                      onClick={() => Deletesecuritydata(security.isin)}
-                    >
-                      Delete
-                    </Link>
-                  </Td>
-                </Tr>
-              )})}
+                      <Link to='/updatesecurity' state={{ id: security.id, isinnumber: security.isin }} className="btn btn-primary mx-2">
+                        Update</Link>
+                      <Link className="btn btn-outline-primary mx-2"
+                        onClick={() => Deletesecuritydata(security.isin)}
+                      >
+                        Delete
+                      </Link>
+                    </Td>
+                  </Tr>
+                )
+              })}
             </Tbody>
           </Table>
         </>
