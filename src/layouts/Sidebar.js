@@ -7,11 +7,11 @@ const navigation = [
     title: "Dashboard",
     href: "/starter",
   },
-  {
-    title: "Alert",
-    href: "/alerts",
-    icon: "bi bi-bell",
-  },
+  // {
+  //   title: "Alert",
+  //   href: "/alerts",
+  //   icon: "bi bi-bell",
+  // },
   {
     title: "Security",
     href: "/security",
