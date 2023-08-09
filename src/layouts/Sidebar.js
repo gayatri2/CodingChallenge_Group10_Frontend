@@ -1,17 +1,17 @@
 import { Button, Nav, NavItem } from "reactstrap";
 
 import { Link, useLocation } from "react-router-dom";
-
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 const navigation = [
   {
     title: "Dashboard",
     href: "/starter",
   },
-  {
-    title: "Alert",
-    href: "/alerts",
-    icon: "bi bi-bell",
-  },
+  // {
+  //   title: "Alert",
+  //   href: "/alerts",
+  //   icon: "bi bi-bell",
+  // },
   {
     title: "Security",
     href: "/security",
@@ -34,11 +34,20 @@ const Sidebar = () => {
     document.getElementById("sidebarArea").classList.toggle("showSidebar");
   };
   let location = useLocation();
+    const bondManagerStyle = {
+    fontSize: '22px',
+    fontFamily: 'Georgia, serif',
+    fontWeight: 'bold',
+    color: '#2E86C1', // You can choose a color that you like
+    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.2)'
+  };
 
   return (
     <div className="p-3">
       <div className="d-flex align-items-center">
+       <b style={bondManagerStyle} >$BOND MANAGER</b>
         <span className="ms-auto d-lg-none">
+          
         <Button
           close
           size="sm"

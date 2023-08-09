@@ -20,7 +20,7 @@ function CreateSecurity(props) {
   const [faceValue, setFaceValue] = useState('');
   const [isin, setIsin] = useState('');
   const [issuer, setIssuer] = useState('');
-  const [status, setStatus] = useState('active');
+  const [status, setStatus] = useState('Active');
   const [type, setType] = useState('bond');
   const [maturityDate, setmaturityDate] = useState('');
   const initialId = issuer.length || 0;
@@ -153,8 +153,8 @@ function CreateSecurity(props) {
               onChange={(e) => setStatus(e.target.value)}
               required
             >
-              <option value="active">Active</option>
-              <option value="inactive">Inactive</option>
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
             </Input>
           </FormGroup>
 
