@@ -3,7 +3,7 @@ import { Table, Thead, Tbody, Tr, Th } from 'react-super-responsive-table';
 import { Link } from "react-router-dom";
 
 
-const TradeTable = ({ tradeData }) => {
+const TradeTable = ({ tradeData, path }) => {
     // create a modal to edit the trade
 
     return (
@@ -48,7 +48,7 @@ const TradeTable = ({ tradeData }) => {
                             <Th>{settlementDateFormatted}</Th>
                             <Th>
                                 <Link to='/updatetrade'
-                                    state={{ id: trade.id }}
+                                    state={{ id: trade.id, path: path }}
                                     className="btn btn-primary mx-2">
                                     Update
                                 </Link>
