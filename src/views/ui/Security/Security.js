@@ -11,6 +11,8 @@ import Box from "@mui/material/Box";
 import axios from 'axios'
 import { Badge, Form, FormGroup, Label, Input, Button } from 'reactstrap'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
 
 export default function Security(props) {
   const navigate = useNavigate()
@@ -56,14 +58,34 @@ export default function Security(props) {
   };
 
   const Deletesecuritydata = async (id) => {
-
+    let num=false
     try {
       console.log(id)
       const SecurityData = await axios.post('http://localhost:8081/api/v1/deleteSecurity', id);
       console.log(SecurityData.data);
     } catch (error) {
       console.error('Error:', error);
+      num=true
+      Swal.fire({
+        title: 'FAIL TO DELETE',
+        icon: 'error',
+        dangerMode: true,
+        button: false,
+        showConfirmButton: false,
+        timer: 900,
+      })
     }
+    if(!num)
+    {
+      Swal.fire({
+        title: 'SUCCESSFULLY DELETED',
+        icon: 'success',
+        dangerMode: true,
+        button: false,
+        showConfirmButton: false,
+        timer: 900,
+    })
+  }
   };
 
   const getData = async (id) => {

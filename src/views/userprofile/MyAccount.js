@@ -27,25 +27,25 @@ function MyAccount(props) {
       </div>
       <div className="user-details">
       <div className="detail">
-        <Badge color="primary" className="mb-2 larger-badge">
+        <Badge color="primary" className="mb-2 larger-badge" style={{ fontSize: '16px' }}>
           Securities Held
         </Badge>
         <p>{user.securitiesHeld} bonds</p>
       </div>
       <div className="detail">
-        <Badge color="success" className="mb-2 larger-badge">
+        <Badge color="success" className="mb-2 larger-badge" style={{ fontSize: '16px' }}>
           Trades Occurred
         </Badge>
         <p>{user.tradesOccurred} trades</p>
       </div>
       <div className="detail">
-        <Badge color="info" className="mb-2 larger-badge">
+        <Badge color="info" className="mb-2 larger-badge" style={{ fontSize: '16px' }}>
           Account Created
         </Badge>
         <p>{user.daysAgoCreated} days ago</p>
       </div>
       <div className="detail">
-        <Badge color="warning" className="mb-2 larger-badge">
+        <Badge color="warning" className="mb-2 larger-badge" style={{ fontSize: '16px' }}>
           Total Portfolio Value
         </Badge>
         <p>${user.totalPortfolioValue.toLocaleString()}</p>

@@ -17,45 +17,45 @@ const tableData = [
     avatar: user1,
     name: "Hanna Gover",
     email: "hgover@gmail.com",
-    project: "Flexy React",
+    company: "Flexy React",
     status: "pending",
-    weeks: "35",
+    portfolio: "60",
     budget: "95K",
   },
   {
     avatar: user2,
     name: "Charles Gover",
     email: "hgover@gmail.com",
-    project: "Lading pro React",
+    company: "DWT",
     status: "done",
-    weeks: "35",
+    portfolio: "35",
     budget: "95K",
   },
   {
     avatar: user3,
     name: "John Gover",
     email: "hgover@gmail.com",
-    project: "Elite React",
+    company: "Elite React",
     status: "holt",
-    weeks: "35",
+    portfolio: "30",
     budget: "95K",
   },
   {
     avatar: user4,
     name: "Cameron Gover",
     email: "hgover@gmail.com",
-    project: "Flexy React",
+    company: "GUI",
     status: "pending",
-    weeks: "35",
+    portfolio: "25",
     budget: "95K",
   },
   {
     avatar: user5,
     name: "hatan Gover",
     email: "hgover@gmail.com",
-    project: "Ample React",
+    company: "Ample",
     status: "done",
-    weeks: "35",
+    portfolio: "20",
     budget: "95K",
   },
 ];
@@ -79,9 +79,9 @@ const ProjectTables = () => {
 
       <Card>
         <CardBody>
-          <CardTitle tag="h5">Project Listing</CardTitle>
+          <CardTitle tag="h5">Top Portfolio</CardTitle>
           <CardSubtitle className="mb-2 text-muted" tag="h6">
-            Overview of the projects
+            Overview 
           </CardSubtitle>
 
 
@@ -114,10 +114,10 @@ const ProjectTables = () => {
           <Table className="no-wrap mt-3 align-middle" responsive borderless>
             <thead>
               <tr>
-                <th>Team Lead</th>
-                <th>Project</th>
+                <th>Lead</th>
+                <th>Company</th>
                 <th>Status</th>
-                <th>Weeks</th>
+                <th>Portfolio</th>
                 <th>Budget</th>
               </tr>
             </thead>
@@ -140,7 +140,7 @@ const ProjectTables = () => {
                     </div>
                   </td>
                   <div data-aos="fade-left"  data-aos-duration="1500" >
-                  <td>{tdata.project}</td>
+                  <td>{tdata.company}</td>
                   </div>
                   <td>
                     {tdata.status === "pending" ? (
@@ -152,7 +152,7 @@ const ProjectTables = () => {
                     )}
                   </td>
                   <div data-aos="fade-left"  data-aos-duration="1500">
-                  <td>{tdata.weeks}</td> </div>
+                  <td>{tdata.portfolio}</td> </div>
                   <td>{tdata.budget}</td>
                  
                 </tr>
