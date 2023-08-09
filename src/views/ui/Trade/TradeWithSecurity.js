@@ -28,7 +28,7 @@ function TradeWithSecurity(props) {
                 <button>CREATE TRADE</button>
             </Link>
             {tradeData?.length > 0 ? (
-                <TradeTable tradeData={tradeData} />
+                <TradeTable tradeData={tradeData} path = {`/security/gettradewithsecurity/${id}`} />
             ) : (
                 <h3>No Trade Data</h3>
             )}

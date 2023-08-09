@@ -18,7 +18,7 @@ export default function UpdateTrade() {
 
     const [tradeData, setTradeData] = useState({})
 
-    // console.log(location.state)
+    console.log(location.state)
     let id = 1;
     if (location.state) {
         id = location.state.id
@@ -97,9 +97,13 @@ export default function UpdateTrade() {
         }).catch((error) =>{
             console.log("Update Failed")
         })
-
+        
         // navigate('/trade')
-        navigate(`/security/getTradewithsecurity/${SecurityId}`)
+        if(location.state.path){
+            navigate(location.state.path)
+        }else{
+            navigate('/trade')
+        }
 
     };
 
