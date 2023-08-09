@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 import { Link, useParams, useNavigate } from "react-router-dom";
@@ -17,11 +17,12 @@ import 'sweetalert2/src/sweetalert2.scss'
 export default function Security(props) {
   const navigate = useNavigate()
   const [securityData, setsecurityData] = useState([])
+  const [originalData, setOrignalData] = useState([])
   const [modalInfo, setmodalInfo] = useState([])
   const [open, setOpen] = React.useState(false);
   const [openname, setOpenName] = useState(false);
-  const [startDate, setStartDate] = useState('2025-01-01');
-  const [endDate, setEndDate] = useState('2029-01-01');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -54,6 +55,7 @@ export default function Security(props) {
 
 
     setsecurityData(info)
+    setOrignalData(info)
 
   };
 
@@ -109,18 +111,19 @@ export default function Security(props) {
 
   const currentDate = new Date();
 
-  const filterSecurityData = (startDate, endDate) => {
-    console.log(startDate, endDate);
-    const fstartDate = new Date(startDate);
-    const fendDate = new Date(endDate);
-    const filteredSecurityData = securityData.filter((security) => {
+  const filterSecurityData = useCallback((start, end) => {
+    const filteredData = originalData.filter(security => {
       const securityDate = new Date(security.maturityDate);
-      return securityDate >= fstartDate && securityDate <= fendDate;
+      if(!start && !end) return true;
+      return securityDate >= new Date(start) && securityDate <= new Date(end);
     });
-    // console.log(filteredSecurityData.length)
-    setsecurityData(filteredSecurityData);
-    // console.log(filteredSecurityData.length);
-  };
+
+    setsecurityData(filteredData);
+  }, [originalData]);
+
+  useEffect(() => {
+    filterSecurityData(startDate, endDate);
+  }, [filterSecurityData]);
 
   useEffect(() => {
     loadsecuritydata()
@@ -140,10 +143,8 @@ export default function Security(props) {
           type="date"
           value={startDate}
           onChange={(e) => {
-            // change date to yyyy-mm-dd format
             setStartDate(e.target.value);
           }}
-        // have default value as today's date
 
         />
         <Input
