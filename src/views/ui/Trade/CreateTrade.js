@@ -11,9 +11,9 @@ import axios from 'axios';
 function CreateTrade(props) {
   const location = useLocation();
   const navigate = useNavigate();
-  const [BookId, setBookId] = useState(1);
-  const [CounterpartyId, setCounterpartyId] = useState(201);
-  const [SecurityId, setSecurityId] = useState(location.state.securityId? location.state.securityId : 301);
+  const [BookId, setBookId] = useState('');
+  const [CounterpartyId, setCounterpartyId] = useState('');
+  const [SecurityId, setSecurityId] = useState(location.state.securityId? location.state.securityId : '');
   const [Quantity, setQuantity] = useState(0);
   const [Status, setStatus] = useState('Completed');
   const [Price, setPrice] = useState(0);
