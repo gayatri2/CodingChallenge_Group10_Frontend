@@ -10,7 +10,9 @@
 }
 
 .past-date {
-  background-color: red;
+  /* background with red border and light red as background  for a table row */
+  background-color: #e87b7b;
+  border: 3px solid #d50202;
 }
 
 

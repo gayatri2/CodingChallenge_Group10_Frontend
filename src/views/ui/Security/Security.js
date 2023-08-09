@@ -161,8 +161,10 @@ export default function Security(props) {
 
       {securityData.length > 0 ? (
         <>
-          <Table>
+          {/* center all content */}
+          <Table className="text-center">
             <Thead>
+              {/* center each table heading */}
               <Tr>
                 <Th scope="col">S.N</Th>
                 <Th scope="col">Coupon</Th>
@@ -173,12 +175,13 @@ export default function Security(props) {
                 <Th scope="col">MaturityDate</Th>
                 <Th scope="col">Status</Th>
                 <Th scope="col">Type</Th>
+                <Th scope="col">Action</Th>
               </Tr>
             </Thead>
             <Tbody>
               {securityData.map((security, index) => {
                 return (
-                  <Tr key={security.id} className={new Date(security.maturityDate) < currentDate ? 'past-date' : ''}>
+                  <Tr key={security.id} className={new Date(security.maturityDate) < currentDate ? 'past-date' : '' }>
                     <Th scope="row">{index + 1}</Th>
                     <Td>{security.coupon}</Td>
                     <Td>{security.cusip}</Td>
@@ -204,8 +207,6 @@ export default function Security(props) {
 
 
                     <Td>
-
-
                       <Link className="btn btn-outline-primary mx-2" onClick={() => {
                         handleOpenName(); // Call the first function
                         getData(security.id);
