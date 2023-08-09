@@ -50,9 +50,9 @@ const Feeds = () => {
     <div data-aos="fade-left"  data-aos-duration="1500">
     <Card>
       <CardBody>
-        <CardTitle tag="h5">Feeds</CardTitle>
+        <CardTitle tag="h5">Users</CardTitle>
         <CardSubtitle className="mb-2 text-muted" tag="h6">
-          Widget you can use
+          Users in our platform
         </CardSubtitle>
         <ListGroup flush className="mt-4">
           {FeedData.map((feed, index) => (

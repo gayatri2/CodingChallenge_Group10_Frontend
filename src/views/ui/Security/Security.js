@@ -85,6 +85,8 @@ export default function Security(props) {
     navigate(`gettradewithsecurity/${id}`)
   }
 
+  const currentDate = new Date();
+
   const filterSecurityData = (startDate, endDate) => {
     console.log(startDate, endDate);
     const fstartDate = new Date(startDate);
@@ -153,7 +155,7 @@ export default function Security(props) {
             <Tbody>
               {securityData.map((security, index) => {
                 return (
-                  <Tr key={security.id}>
+                  <Tr key={security.id} className={new Date(security.maturityDate) < currentDate ? 'past-date' : ''}>
                     <Th scope="row">{index + 1}</Th>
                     <Td>{security.coupon}</Td>
                     <Td>{security.cusip}</Td>

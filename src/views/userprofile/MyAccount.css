@@ -9,6 +9,11 @@
   align-items: center;
 }
 
+.past-date {
+  background-color: red;
+}
+
+
 .user-header {
   text-align: center;
   margin-bottom: 20px;
